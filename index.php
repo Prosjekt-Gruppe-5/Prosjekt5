@@ -1,19 +1,34 @@
 <?php
 //Mock "database" for testing av funksjonalitet, som må byttes ut med ekte DB når denne er oppe
-    $mockDB = array(
+    $mockDBSubjects = array(
         '1' => array(
             'name' => 'Testemne 1',
             'lecturer' => 'Per Pettersen',
+            'messages' => array(
+                'Første testmelding for emne 1',
+                'Andre testmelding for emne 1',
+                'Tredje testmelding for emne 1'
+            ),
         ),
 
         '2' => array(
             'name' => 'Testemne 2',
             'lecturer' => 'Gunn Gundersen',
+            'messages' => array(
+                'Første testmelding for emne 2',
+                'Andre testmelding for emne 2',
+                'Tredje testmelding for emne 2'
+            ),
         ),
 
         '3' => array(
             'name' => 'Testemne 3',
             'lecturer' => 'Ole Olsen',
+            'messages' => array(
+                'Første testmelding for emne 3',
+                'Andre testmelding for emne 3',
+                'Tredje testmelding for emne 3'
+            ),
         )
         );
 ?>
@@ -42,14 +57,14 @@
 
         <div id="featured-content">
             <form action='index.php' method='get'>
-                <label for='subject'>Emne</label>
+                <label for='subject'><strong>Emne:</strong></label>
 
                 <select name='subject' id='subject'>
                     <option value='0' disabled='true' selected='true'>-- Velg emne --</option>
                     <?php 
-                        foreach($mockDB as $key => $value) {
+                        foreach($mockDBSubjects as $key => $value) {
                             echo "
-                            <option value=" . $key . ">" . $mockDB[$key]['name'] . "</option>
+                            <option value=" . $key . ">" . $mockDBSubjects[$key]['name'] . "</option>
                             ";
                         }
                     ?>
@@ -60,22 +75,30 @@
 
             <?php 
                 if(ISSET($_GET['subject']) && $_GET['subject'] != '0') {
-                    echo "<p>Emne: " . $mockDB[$_GET['subject']]['name'] . "</p>
-                    <p>Foreleser: " . $mockDB[$_GET['subject']]['lecturer'] . "</p>
-                    <form action='index.php?subject=" . $_GET['subject'] . "' method='post' id='messageForm'>
+                    echo "
+                    <h2>" . $mockDBSubjects[$_GET['subject']]['name'] . "</h2>
+                    <p><strong>Foreleser: </strong>" . $mockDBSubjects[$_GET['subject']]['lecturer'] . "</p>
+                  
+                    <form action='index.php' method='post' id='messageForm'>
                         <input type='hidden' name='messageSubject' id='messageSubject' value=" . $_GET['subject'] . ">
-                        <label for='message'>Melding til foreleser</label>
+                        <label for='message'><strong>Melding til foreleser:</strong></label>
                         <textarea id='message' name='message'></textarea>
                         <input type='submit' value='Send'>
                     </form>
+
+                    <p><strong>Alle meldinger: </strong></p>
                     ";
+
+                    foreach($mockDBSubjects[$_GET['subject']]['messages'] as $message) {
+                        echo "<div id='messageBox'><p>" . $message . "</p></div>";
+                    }
                 }
             ?>
 
             <?php
                 if(ISSET($_POST['message'])) {
-                    echo "<p>Melding sendt for emne: " . $mockDB[$_POST['messageSubject']]['name'] . "</p>
-                    <p>Din melding: " . $_POST['message'] . "</p>";
+                    echo "<p><strong>Melding sendt for emne: </strong>" . $mockDBSubjects[$_POST['messageSubject']]['name'] . "</p>
+                    <p><strong>Din melding: </strong>" . $_POST['message'] . "</p>";
                 }
             ?>
             

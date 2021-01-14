@@ -2,6 +2,13 @@ body{
 	padding:0px;
 	margin:0px;
 	background-color:white;
+	font-family: Arial;
+}
+
+p, label, h2, h3{
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 0px;
 }
 
 #wrapper{
@@ -28,6 +35,8 @@ head{
 	width:962px;
 	background-color:white;
 	margin-left:-2px;
+	display: flex;
+	align-items: center;
 }
 
 
@@ -37,7 +46,7 @@ head{
 	padding-right:5px;
 }
 
-#featured-content{
+#featured-content {
     border: 2px solid black;
     background-color: lightblue;
     margin-top: 50px; 
@@ -49,12 +58,18 @@ head{
 	justify-content: space-between;
 }
 
-#messageForm{
+#messageForm {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	width: 30%;
 	min-height: 100px;
+}
+
+#messageBox {
+	background-color:aliceblue;
+	padding: 0 1em 1em 1em;
+	margin: 5px 0 5px 0;
 }
 
 #registrer {
