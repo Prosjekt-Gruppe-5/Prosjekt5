@@ -10,10 +10,10 @@
     <div id = "wrapper">
 
         <div id="nav">
-            <a href="index.html">Hjem</a>
+            <a href="index.php">Hjem</a>
             
-            <span class="regis"><a href = "registrer.html">Registrer</a></span>
-            <span class="regis"><a href = "login.html">Login</a></span>
+            <span class="regis"><a href = "registrer.php">Registrer</a></span>
+            <span class="regis"><a href = "login.php">Login</a></span>
         </div>
 
 
