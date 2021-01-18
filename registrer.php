@@ -1,69 +1,138 @@
+<!DOCTYPE HTML>
+
+<?php
+// Include config file
+require_once "config.php";
+ 
+// Define variables and initialize with empty values
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Validate username
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter a username.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE username = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            
+            // Set parameters
+            $param_username = trim($_POST["username"]);
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $username_err = "This username is already taken.";
+                } else{
+                    $username = trim($_POST["username"]);
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter a password.";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Password must have atleast 6 characters.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm password.";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Password did not match.";
+        }
+    }
+    
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+        
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            
+            // Set parameters
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                header("location: login.php");
+            } else{
+                echo "Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Close connection
+    mysqli_close($link);
+}
+?>
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> ...</title>
-        
-        <link rel="stylesheet" type="text/css" href="style.css">
-        
-    </head>
-    <body>
-    <div id = "wrapper">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 350px; padding: 20px; }
+    </style>
+</head>
+<body>
+<!--Legg nav bar inn her-->
 
-        <div id="nav">
-            <a href="index.php">Hjem</a>
-            
-            <span class="regis"><a href = "registrer.php">Registrer</a></span>
-            <span class="regis"><a href = "login.php">Login</a></span>
-        </div>
-
-
-     <!--Innlogging-->     
-            <form id = "registrer">
-                <div class="login-box">
-                    <h1>Registrer</h1>
-                    <!--Brukernavn-->
-                    <div class="textbox">
-                        <input type="text" placeholder="Brukernavn" name="" value="" required>
-                    </div>
-                    <!--End brukernavn-->
-
-                    <!--E-post-->
-                    <div class="textbox">
-                        <input type="text" placeholder="E-post" name="" value="" required>
-                    </div>
-                    <!--End e-post-->
-
-                    <!--Telefonnummer-->
-                    <div class="textbox">
-                        <input type="text" placeholder="Telefonnummer" name="" value="" required>
-                    </div>
-                    <!--End telefonnummer-->
-        
-                    <!--Passord-->
-                    <div class="textbox">
-                        <input type="password" placeholder="Passord" name="" value="" required> 
-                    </div>
-
-                    <!--Bekreft passord-->
-                    <div class="textbox">
-                        <input type="password" placeholder="Bekreft passord" name="psw-repeat" required>
-                    </div>
-                    <!--End bekreft passord-->
-
-                    <p class="togp">By creating an account you agree to our <a href="#" style="color:white">Terms & Privacy</a>.</p>
-        
-                    <button class="btn" onclick = "alertMessage()">Registrer</button>
-                    
-                    <script src="js/registrer.js"></script>
-
-                    <!--End passord-->
-
-                </div>   
-               
-            </form>
-            <!--End Innlogging-->     
-       
-        
-        </div>
-    </body>
+    <div class="wrapper">
+        <h2>Registrer deg</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>
+            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Brukernavn</label>
+                <input type="text" name="username" class="form-control">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                <label>Passord</label>
+                <input type="password" name="password" class="form-control">
+                <span class="help-block"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                <label>Bekreft passord</label>
+                <input type="password" name="confirm_password" class="form-control">
+                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Registrer">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+            <p>Har du allerede bruker? <a href="login.php">Login her</a>.</p>
+        </form>
+    </div>    
+</body>
 </html>
