@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login-student</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
@@ -103,11 +103,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!--Legg nav bar inn her-->
 
     <div class="wrapper">
-        <h2>Login</h2>
+        <h2>Login for student</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Brukernavn</label>
-                <input type="text" name="username" class="form-control" value="">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" value="">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
@@ -118,6 +118,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
+            <p>Er du foreleser? <a href="login-foreleser.php">Foreleser for login</a></p>
             <p>Har ikke bruker? <a href="registrer.php">Registrer deg nå</a>.</p>
         </form>
     </div>    
