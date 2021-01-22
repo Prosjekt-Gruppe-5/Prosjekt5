@@ -1,5 +1,5 @@
 <?php
-
+//Mer kommer bare struktur for nå
 if (isset($_POST['submit'])) {
 
 	include_once 'dbh.inc.php';
@@ -9,7 +9,6 @@ if (isset($_POST['submit'])) {
 	$last = mysqli_real_escape_string($conn, $_POST['last']);
 	$email = mysqli_real_escape_string($conn, $_POST['email']);
 	$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
-
 	//Error handler
 	//Check for empty fields
 	if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd)) {
@@ -19,7 +18,8 @@ if (isset($_POST['submit'])) {
 			//Insert the user into the database
 			$sql = "INSERT INTO regist (username, first, last, email, password) VALUES ('$uid', '$first', '$last', '$email', '$pwd');";
 			mysqli_query($conn, $sql);
-			header("Location: ../signup.php?signup=success");
+			include 'upload.inc.php';
+			header("Location: ../../index.php?signup=success");
 			exit();
 	}
 

@@ -21,15 +21,32 @@
         font-size: 1.2em;
     }
     </style>
+    <script>
+    function SubmitForm()
+    {
+     document.forms['form1'].action='includes/signup_unsec.inc.php';
+     document.forms['form1'].submit();
+
+     document.forms['form1'].action='includes/upload.inc.php';
+     document.forms['form1'].submit();
+     return true;
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+        <nav> 
+            <a href="signup_student.php">student innlogging</a>
+        </nav>
+    </header>
+
     <main>
         <section>
-            <form name="form1" action="includes/signup_unsec.inc.php" method="POST">
+                <h1>Foreleser</h1><br>
+                <form name="form1" action="includes/signup_unsec.inc.php" method="post" enctype="multipart/form-data">
                 <p>Username:</p>
                 <input type="text" name="uid" id="uid_id" placeholder="Username"><br>
                 <p>Firstname:</p>
@@ -40,9 +57,10 @@
                 <input type="text" name="email" id="email_id" placeholder="Email"><br>
                 <p>Password:</p>
                 <input type="password" name="pwd" id="pwd_id" placeholder="Password"><br>
-                <a><input type="submit" onclick="return IsEmpty()" name="submit"></a>
+                <p>Profile picture:</p>
+                <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                <a><input type="submit" value="Upload Image" onclick="SumbitForm()" onclick="return IsEmpty()" name="submit"></a>
             </form>
-        </section>
     </main>
     <script type="text/javascript">
             function IsEmpty() {
