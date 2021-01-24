@@ -9,10 +9,11 @@ if (isset($_POST['submit'])) {
 	$last = mysqli_real_escape_string($conn, $_POST['last']);
 	$email = mysqli_real_escape_string($conn, $_POST['email']);
 	$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
+	//$emner = mysqli_real_escape_string($conn, $_POST['emner']);
 	//Error handler
 	//Check for empty fields
 	if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd)) {
-		header("Location: ../signup.php?signup=empty");
+		header("Location: ../signup_foreleser.php?signup=empty");
 		exit();
 	} else {
 			//Insert the user into the database
@@ -24,6 +25,6 @@ if (isset($_POST['submit'])) {
 	}
 
 } else {
-	header("Location: ../signup.php");
+	header("Location: ../signup_foreleser.php");
 	exit();
 }
