@@ -20,6 +20,13 @@
         font-family: 'Rubik', sans-serif;
         font-size: 1.2em;
     }
+    nav{
+        background-color: hsl(0, 0%, 43%);
+    }
+    a{
+        text-decoration: none;
+        font-size: 1.6em;
+    }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

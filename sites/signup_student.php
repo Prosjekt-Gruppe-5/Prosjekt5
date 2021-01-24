@@ -8,7 +8,7 @@
         background-color: hsla(0, 0%, 43%, 0.83);
     }
     form{
-        margin: 10rem;
+        margin: 5rem;
         text-align: center;
     }
     input{
