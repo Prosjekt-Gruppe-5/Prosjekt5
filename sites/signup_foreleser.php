@@ -67,12 +67,6 @@
     </main>
     <script type="text/javascript">
             function IsEmpty() {
-                var uid1 = document.forms["form1"]["uid"].value;
-                if (uid1 == "") {
-                    alert("Username must be filled out");
-                    return false;
-                }
-
                 var first1 = document.forms["form1"]["first"].value;
                 if (first1 == "") {
                     alert("Name must be filled out");
