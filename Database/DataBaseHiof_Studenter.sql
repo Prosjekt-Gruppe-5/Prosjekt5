@@ -29,6 +29,7 @@ CREATE TABLE `Studenter` (
   `Mail` varchar(45) NOT NULL,
   `Studieretning` varchar(45) NOT NULL,
   `Kull` int NOT NULL,
+  `Passord` varchar(45) NOT NULL,
   PRIMARY KEY (`idStudenter`),
   UNIQUE KEY `idStudenter_UNIQUE` (`idStudenter`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-25 16:17:53
+-- Dump completed on 2021-01-25 16:33:12
