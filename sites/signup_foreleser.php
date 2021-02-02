@@ -1,3 +1,9 @@
+<?php 
+include_once 'includes/dbh.inc.php';
+$emner = "SELECT * FROM emner";
+$emner_conn = $conn->query($emner);
+
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,8 +49,6 @@
         <section>
                 <h1>Foreleser</h1><br>
                 <form name="form1" action="includes/signup_foreleser.inc.php" method="post" enctype="multipart/form-data">
-                <p>Username:</p>
-                <input type="text" name="uid" id="uid_id" placeholder="Username"><br>
                 <p>Firstname:</p>
                 <input type="text" name="first" id="first_id" placeholder="Firstname"><br>
                 <p>Surname:</p>
@@ -52,12 +56,11 @@
                 <p>Email:</p>
                 <input type="text" name="email" id="email_id" placeholder="Email"><br>
                 <p>Emner</p>
-                <!-- For at denne skal fungere må man sammenkoble et par tabeller
                 <select name="emner" id="emner_id">
                     <?php while($rad = mysqli_fetch_array($emner_conn)) { ?>
-                    <option value="<?php echo $rad["id_emne"];?>"><?php echo $rad["emne_navn"];?></option>
+                    <option value="<?php echo $rad["Emne_id"];?>"><?php echo $rad["Emnenavn"];?></option>
                     <?php } ?>
-                </select>-->
+                </select>
                 <p>Profile picture:</p>
                 <input type="file" name="fileToUpload" id="fileToUpload"><br>
                 <p>Password:</p>
@@ -91,12 +94,12 @@
                     return false;
                 }
               
-                //var emner1 = document.forms["form1"]["emner"].value;
-                //if (emner1 == "") {
-                //    alert("Emne must be chosen");
-                //    alert("YOU WERE THE CHOSEN ONE, ANAKEN!!!")
-                //    return false;
-                //}
+                var emner1 = document.forms["form1"]["emner"].value;
+                if (emner1 == "") {
+                    alert("Emne must be chosen");
+                   alert("YOU WERE THE CHOSEN ONE, ANAKEN!!!")
+                    return false;
+                }
                 
                 var fileToUpload1 = document.forms["form1"]["fileToUpload"].value;
                 if (fileToUpload1 == "") {

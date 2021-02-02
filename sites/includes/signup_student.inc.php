@@ -1,4 +1,8 @@
 <?php
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: welcome.php");
+    exit;
+}
 if (isset($_POST['submit'])) {
 
 	include_once 'dbh.inc.php';
@@ -16,7 +20,7 @@ if (isset($_POST['submit'])) {
 		exit();
 	} else {
 			//Insert the user into the database
-			$sql = "INSERT INTO regist_stud (Fornavn, Etternavn, Studieretning, Mail, Passord, Kull) VALUES ('$first', '$last', '$email', '$pwd', '$kull', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
+			$sql = "INSERT INTO Studenter (Fornavn, Etternavn, Studieretning_id, Epost, Passord, Kull) VALUES ('$first', '$last', '$email', '$pwd', '$kull', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
 			mysqli_query($conn, $sql);
 			header("Location: ../../index.php?signup=success");
 			exit();

@@ -53,7 +53,7 @@
                 <input type="number" name="kull" id="kull_id" min="2021" max="2022"><br>
                 <select name="Studieretning" id="Studieretning_id">
                 <?php while($rad = mysqli_fetch_array($Studieretning_conn)) { ?>
-                    <option value="<?php echo $rad["id_Studieretning"];?>"><?php echo $rad["Studieretning_navn"];?></option>
+                    <option value="<?php echo $rad["Studieretning_id"];?>"><?php echo $rad["Studieretningnavn"];?></option>
                 <?php } ?>
                 </select>
                 <p>Password:</p>
