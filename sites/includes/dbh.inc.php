@@ -2,7 +2,7 @@
 
 $dbServername = "localhost";
 $dbUsername = "root";
-$dbPassword = "";
-$dbName = "test_regist";
+$dbPassword = "password";
+$dbName = "datasikkerhet";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
