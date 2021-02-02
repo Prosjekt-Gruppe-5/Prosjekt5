@@ -16,7 +16,7 @@
         <div id="nav">
             <a href="velkommen.php">Hjem</a>
             <a href="index.php">Emne</a>
-            <a href="om.php">Om oss</a>
+            <a href="sites/om.php">Om oss</a>
             <span class="regis"><a href = "registrer.php">Registrer</a></span>
             <span class="regis"><a href = "login.php">Login</a></span>
         </div>
