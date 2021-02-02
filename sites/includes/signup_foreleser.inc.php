@@ -38,5 +38,3 @@ if (isset($_POST['submit'])) {
 	header("Location: ../signup_foreleser.php");
 	exit();
 }
-$emner = "SELECT * FROM emner";
-        $emner_conn = $conn->query($emner);
