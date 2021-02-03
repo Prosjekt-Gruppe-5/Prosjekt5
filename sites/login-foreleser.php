@@ -26,7 +26,7 @@
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Er du student? <a href="login.php">Student for login</a></p>
-            <p>Har ikke bruker? <a href="registrer.php">Registrer deg nå</a>.</p>
+            <p>Har ikke bruker? <a href="signup_foreleser.php">Registrer deg nå</a>.</p>
         </form>
     </div>    
 </body>
