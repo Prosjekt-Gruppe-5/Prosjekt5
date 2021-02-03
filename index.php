@@ -50,8 +50,8 @@
         <div id="nav">
             <a href="index.php">Hjem</a>
 
-            <span class="regis"><a href = "signup_student.php">Registrer</a></span>
-            <span class="regis"><a href = "login.php">Login</a></span>
+            <span class="regis"><a href = "sites/signup_student.php">Registrer</a></span>
+            <span class="regis"><a href = "sites/login.php">Login</a></span>
         </div>
 
 
