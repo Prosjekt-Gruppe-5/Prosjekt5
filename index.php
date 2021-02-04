@@ -50,15 +50,14 @@ session_start();
 
         <div id="nav">
             <a href="index.php">Hjem</a>
-
-            <span class="regis"><a href = "sites/signup_student.php">Registrer</a></span>
             <?php
         				  if (isset($_SESSION['loggedin'])) {
-        					  echo '<form action="includes/logout.inc.php" method="POST">
+        					  echo '<form action="sites/includes/logout.inc.php" method="POST">
         						  <button type="submit" name="submit">Logout</button>
         					  </form>';
         				  } else {
-        					  echo '<span class="regis"><a href = "sites/login.php">Login</a></span>';
+                              echo '<span class="regis"><a href = "sites/login.php">Login</a></span>
+                              <span class="regis"><a href = "sites/signup_student.php">Registrer</a></span>';
         				  }
         			  ?>
         </div>
