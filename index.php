@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <?php
 session_start();
 //Mock "database" for testing av funksjonalitet, som må byttes ut med ekte DB når denne er oppe
