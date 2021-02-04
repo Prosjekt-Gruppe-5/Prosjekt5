@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 	$Studieretning = mysqli_real_escape_string($conn, $_POST['Studieretning']);
 	//Error handler
 	//Check for empty fields
-	if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd) || empty($kull) || empty($Studieretning)) {   //bruk denne når tabellene er sammenkoblet|| empty($kull)
+	if (empty($first) || empty($last) || empty($email) || empty($pwd) || empty($kull) || empty($Studieretning)) {   //bruk denne når tabellene er sammenkoblet|| empty($kull)
 		header("Location: ../signup_student.php?signup=empty");
 		exit();
 	} else {
