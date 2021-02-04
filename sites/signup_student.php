@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once 'includes/dbh.inc.php';
 $studieretning = "SELECT * FROM Studieretning";
 $studieretning_conn = $conn->query($studieretning);
