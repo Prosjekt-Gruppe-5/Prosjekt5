@@ -53,7 +53,15 @@ session_start();
             <a href="index.php">Hjem</a>
 
             <span class="regis"><a href = "sites/signup_student.php">Registrer</a></span>
-            <span class="regis"><a href = "sites/login.php">Login</a></span>
+            <?php
+        				  if (isset($_SESSION['Student_id' || 'Foreleser_id'])) {
+        					  echo '<form action="includes/logout.inc.php" method="POST">
+        						  <button type="submit" name="submit">Logout</button>
+        					  </form>';
+        				  } else {
+        					  echo '<span class="regis"><a href = "login.php">Login</a></span>';
+        				  }
+        			  ?>
         </div>
 
 
