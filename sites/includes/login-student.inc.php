@@ -56,6 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){
                             // Store data in session variables
                             $_SESSION["loggedin_student"] = true;
+                            $_SESSION["loggedin"] = true;
                             $_SESSION["Student_id"] = $id;
                             $_SESSION["email"] = $email;                            
                             

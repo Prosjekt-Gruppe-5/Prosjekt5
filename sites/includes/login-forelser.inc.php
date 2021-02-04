@@ -58,6 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){
                             // Store data in session variables
                             $_SESSION["loggedin_foreleser"] = true;
+                            $_SESSION["loggedin"] = true;
                             $_SESSION["Foreleser_id"] = $id;
                             $_SESSION["email"] = $username;                            
                             
