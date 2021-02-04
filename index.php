@@ -58,7 +58,7 @@ session_start();
         						  <button type="submit" name="submit">Logout</button>
         					  </form>';
         				  } else {
-        					  echo '<span class="regis"><a href = "login.php">Login</a></span>';
+        					  echo '<span class="regis"><a href = "sites/login.php">Login</a></span>';
         				  }
         			  ?>
         </div>
