@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 		exit();
 	} else {
 			//Insert the user into the database
-			$sql = "INSERT INTO Studenter (Fornavn, Etternavn, Studieretning_id, Epost, Passord, Kull) VALUES ('$first', '$last', '$email', '$pwd', '$kull', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
+			$sql = "INSERT INTO Studenter (Fornavn, Etternavn, Epost, Kull, Passord, Studieretning_id) VALUES ('$first', '$last', '$email','$kull', '$pwd', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
 			mysqli_query($conn, $sql);
 			header("Location: ../../index.php?signup=success");
 			exit();
