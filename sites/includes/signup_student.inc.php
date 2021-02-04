@@ -1,6 +1,6 @@
 <?php
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: ../welcome.php");
     exit;
 }
 if (isset($_POST['submit'])) {
