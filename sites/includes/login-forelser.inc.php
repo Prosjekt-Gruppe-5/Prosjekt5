@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT Epost, Passord FROM foreleser WHERE Epost = ?";
+        $sql = "SELECT Epost, Passord FROM Foreleser WHERE Epost = ?";
         $result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
         
