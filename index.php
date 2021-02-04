@@ -53,7 +53,7 @@ session_start();
 
             <span class="regis"><a href = "sites/signup_student.php">Registrer</a></span>
             <?php
-        				  if (isset($_SESSION['Student_id' || 'Foreleser_id'])) {
+        				  if (isset($_SESSION['loggedin'])) {
         					  echo '<form action="includes/logout.inc.php" method="POST">
         						  <button type="submit" name="submit">Logout</button>
         					  </form>';
