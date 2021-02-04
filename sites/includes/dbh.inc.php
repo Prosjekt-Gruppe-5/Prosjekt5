@@ -6,4 +6,4 @@ $dbPassword = "?8QGb@_M]";
 $dbName = "Datasikkerhet";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
->>>>>>> Stashed changes
+
