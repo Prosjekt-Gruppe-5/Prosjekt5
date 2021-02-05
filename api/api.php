@@ -1,11 +1,10 @@
 <?php
 header("Content-Type:application/json");
-//require "data.php";
 require "connect.php";
 
 
 get_emne();
-echo "<br>"
+echo "<br>";
 
 if(!empty($_GET['Emnenavn']))
 {
@@ -46,7 +45,7 @@ function show($emnenavn)
 
 	$result = $query->fetch();
 
-	echo "<br>" . "Ny kode!" . "</br>";
+	echo "Ny kode!";
 	
     echo "</br>Emnenavn : ".$result['Emnenavn']."</br>Emnekode : ".$result['Emnekode']."</br> ";	 
 	
