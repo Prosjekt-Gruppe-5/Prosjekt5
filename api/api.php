@@ -5,28 +5,10 @@ require "connect.php";
 
 //get_emne();
 
-if(!empty($_GET['Emnenavn']))
-{
-	$emnenavn=$_GET['Emnenavn'];
-	//$emnekode = get_emnekode($emnenavn);
-	show($emnenavn);
-}
-else
-{
-	response(400,"Putt et parameter inn i URLen (Emnenavn = ...).",NULL);
-}
+$emnenavn=$_GET['Emnenavn'];
+//$emnekode = get_emnekode($emnenavn);
+show($emnenavn);
 
-function response($status,$status_message,$data)
-{
-	header("HTTP/1.1 ".$status);
-	
-	$response['status']=$status;
-	$response['status_message']=$status_message;
-	$response['data']=$data;
-	
-	$json_response = json_encode($response);
-	echo $json_response;
-}
 
 
 function show($emnenavn)
@@ -48,21 +30,6 @@ function show($emnenavn)
 	echo "Ny kode!";
 	
     echo "</br>Emnenavn : ".$result['Emnenavn']."</br>Emnekode : ".$result['Emnekode']."</br> ";	 
-	
-}
-
-
-function get_emnekode($emnenavn){
-	global $conn;
-
-	$query = $conn->query("SELECT Emnenavn, Emnekode FROM Emner WHERE Emnenavn = $emnenavn");
-
-	$result = $query->fetchAll();
-
-	foreach($result as $object)
-	{
-		echo "</br>Emnenavn : ".$object['Emnenavn']."</br>Emnekode : ".$object['Emnekode']."</br>";	 
-	}
 }
 
 
@@ -81,3 +48,18 @@ function get_emne()
 		echo "</br>Emnenavn : ".$object['Emnenavn']."</br>Emnekode : ".$object['Emnekode']."</br>";	 
 	}
 }
+
+/*
+function get_emnekode($emnenavn){
+	global $conn;
+
+	$query = $conn->query("SELECT Emnenavn, Emnekode FROM Emner WHERE Emnenavn = $emnenavn");
+
+	$result = $query->fetchAll();
+
+	foreach($result as $object)
+	{
+		echo "</br>Emnenavn : ".$object['Emnenavn']."</br>Emnekode : ".$object['Emnekode']."</br>";	 
+	}
+}
+*/
