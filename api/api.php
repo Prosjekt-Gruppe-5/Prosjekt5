@@ -14,7 +14,7 @@ if(!empty($_GET['Emnenavn']))
 }
 else
 {
-	response(400,"Invalid Request",NULL);
+	response(400,"RIP.",NULL);
 }
 
 function response($status,$status_message,$data)
@@ -36,7 +36,7 @@ function show($emnenavn)
 	
 	$query = $conn->prepare('SELECT Emnenavn,Emnekode FROM Emner WHERE Emnenavn = ?');
 		
-	$query->bindParam(1, $emnenavn, PDO::PARAM_INT);
+	$query->bindParam(1, $emnenavn, PDO::PARAM_STR);
     //$query->bindParam(2, $Emnekode, PDO::PARAM_STR, 50);
 	
 	$query->execute();
