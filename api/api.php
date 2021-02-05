@@ -10,7 +10,7 @@ if(!empty($_GET['Emnenavn']))
 {
 	$emnenavn=$_GET['Emnenavn'];
 	$emnekode = get_emnekode($emnenavn);
-	show($emnenavn, $emnekode);
+	show($emnenavn);
 }
 else
 {
@@ -30,13 +30,13 @@ function response($status,$status_message,$data)
 }
 
 
-function show($Emnenavn)
+function show($emnenavn)
 {
 	global $conn;
 	
 	$query = $conn->prepare('SELECT Emnenavn,Emnekode FROM Emner WHERE Emnenavn = ?');
 		
-	$query->bindParam(1, $Emnenavn, PDO::PARAM_INT);
+	$query->bindParam(1, $emnenavn, PDO::PARAM_INT);
     //$query->bindParam(2, $Emnekode, PDO::PARAM_STR, 50);
 	
 	$query->execute();
