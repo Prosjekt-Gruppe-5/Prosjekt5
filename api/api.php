@@ -9,6 +9,13 @@ $emnenavn=$_GET['Emnenavn'];
 //$emnekode = get_emnekode($emnenavn);
 show($emnenavn);
 
+//Melding_id,Meldingstekst,Svar,Emne_id
+
+$melding_id=$_POST['Melding_id'];
+$meldingstekst=$_POST['Meldingstekst'];
+$svar=$_POST['Svar'];
+$emne_id=$_POST['Emne_id'];
+
 
 
 function show($emnenavn)
@@ -30,6 +37,21 @@ function show($emnenavn)
 	echo "Ny kode!";
 	
     echo "</br>Emnenavn : ".$result['Emnenavn']."</br>Emnekode : ".$result['Emnekode']."</br> ";	 
+}
+
+function insert($melding_id,$meldingstekst,$svar,$emne_id)
+{
+	global $conn;
+	
+	$query = $conn->prepare('INSERT INTO Meldinger (Melding_id,Meldingstekst,Svar,Emne_id) VALUES (?, ?, ?, ?)');
+
+	$query->bindParam(1,$melding_id, PDO::PARAM_INT);
+	$query->bindParam(2,$meldingstekst, PDO::PARAM_STR, 50);
+	$query->bindParam(3,$svar, PDO::PARAM_STR, 50);
+	$query->bindParam(4,$emne_id, PDO::PARAM_STR, 50);
+
+	$query->execute();
+   
 }
 
 
