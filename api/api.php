@@ -6,21 +6,10 @@ require "connect.php";
 
 get_emne();
 
-/*
 if(!empty($_GET['Emnenavn']))
 {
-	$name=$_GET['Emnenavn'];
-	//$price = get_price($name);
-	
-	if(empty($price))
-	{
-		response(200,"Product Not Found",NULL);
-	}
-	else
-	{
-		response(200,"Product Found",$price);
-	}
-	
+	$emnenavn=$_GET['Emnenavn'];
+	$emnekode = get_emnekode($emnenavn);	
 }
 else
 {
@@ -39,24 +28,19 @@ function response($status,$status_message,$data)
 	echo $json_response;
 }
 
-function get_price($name)
-{
-	$products = [
-		"book"=>20,
-		"pen"=>10,
-		"pencil"=>5
-	];
-	
-	foreach($products as $product=>$price)
+
+function get_emnekode($emnenavn){
+	global $conn;
+
+	$query = $conn->query("SELECT Emnenavn, Emnekode FROM Emner WHERE Emnenavn = $emnenavn");
+
+	$result = $query->fetchAll();
+
+	foreach($result as $object)
 	{
-		if($product==$name)
-		{
-			return $price;
-			break;
-		}
+		echo "</br>Emnenavn : ".$object['Emnenavn']."</br>Emnekode : ".$object['Emnekode']."</br>";	 
 	}
 }
-*/
 
 
 function get_emne()
