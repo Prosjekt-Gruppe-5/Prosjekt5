@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../welcome.php");
+    header("location: ../../index.php");
     exit;
 }
  
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT Epost, Passord FROM foreleser WHERE Epost = ?";
+        $sql = "SELECT Epost, Passord FROM Foreleser WHERE Epost = ?";
         $result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
         
@@ -57,12 +57,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     mysqli_stmt_bind_result($stmt, $id, $username, $password);
                     if(mysqli_stmt_fetch($stmt)){
                             // Store data in session variables
+                            $_SESSION["loggedin_foreleser"] = true;
                             $_SESSION["loggedin"] = true;
                             $_SESSION["Foreleser_id"] = $id;
                             $_SESSION["email"] = $username;                            
                             
                             // Redirect user to welcome page
-                            header("location: ../welcome.php");
+                            header("location: ../../index.php?logginn=success");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";

@@ -1,9 +1,8 @@
-<?php 
+<?php
 include_once 'includes/dbh.inc.php';
-$emner = "SELECT * FROM emner";
+$emner = "SELECT * FROM Emner";
 $emner_conn = $conn->query($emner);
-
-        ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

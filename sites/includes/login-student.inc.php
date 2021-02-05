@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: ../../index.php");
     exit;
 }
  
@@ -12,17 +12,17 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 require_once "dbh.inc.php";
  
 // Define variables and initialize with empty values
-$email = $password = "";
-$email_err = $password_err = "";
+$username = $password = "";
+$username_err = $password_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if username is empty
     if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter email.";
+        $username_err = "Please enter email.";
     } else{
-        $email = trim($_POST["email"]);
+        $username = trim($_POST["email"]);
     }
     
     // Check if password is empty
@@ -33,16 +33,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validate credentials
-    if(empty($email_err) && empty($password_err)){
+    if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT Epost, Passord FROM studenter WHERE Epost = ?";
+        $sql = "SELECT Epost, Passord FROM Studenter WHERE Epost = ?";
+        $result = mysqli_query($conn, $sql);
+		$resultCheck = mysqli_num_rows($result);
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
             
             // Set parameters
-            $param_email = $email;
+            $param_username = $username;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -52,15 +54,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $email, $password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $password);
                     if(mysqli_stmt_fetch($stmt)){
                             // Store data in session variables
+                            $_SESSION["loggedin_foreleser"] = true;
                             $_SESSION["loggedin"] = true;
                             $_SESSION["Student_id"] = $id;
-                            $_SESSION["email"] = $email;                            
+                            $_SESSION["email"] = $username;                            
                             
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: ../../index.php?logginn=success");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -68,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $email_err = "No account found with that email.";
+                    $username_err = "No account found with that email.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -80,5 +83,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 ?>

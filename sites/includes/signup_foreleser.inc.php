@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
 
 	include_once 'dbh.inc.php';
 
-	$emne = $conn->query("SELECT * FROM emner WHERE Emne_id = '{$_POST["emner"]}'");
+	$emne = $conn->query("SELECT * FROM Emner WHERE Emne_id = '{$_POST["emner"]}'");
         while($row = mysqli_fetch_array($emne)) {
             $emnenavn = $row['Emnenavn'];
         }
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 		exit();
 	} else {
 			//Insert the user into the database
-			$sql = "INSERT INTO foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$pwd', '$emner');";
+			$sql = "INSERT INTO Foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$pwd', '$emner');";
 
 			mysqli_query($conn, $sql);
 			include 'upload.inc.php';

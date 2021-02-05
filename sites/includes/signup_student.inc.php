@@ -1,6 +1,6 @@
 <?php
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: ../welcome.php");
     exit;
 }
 if (isset($_POST['submit'])) {
@@ -15,12 +15,12 @@ if (isset($_POST['submit'])) {
 	$Studieretning = mysqli_real_escape_string($conn, $_POST['Studieretning']);
 	//Error handler
 	//Check for empty fields
-	if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd) || empty($kull) || empty($Studieretning)) {   //bruk denne når tabellene er sammenkoblet|| empty($kull)
+	if (empty($first) || empty($last) || empty($email) || empty($pwd) || empty($kull) || empty($Studieretning)) {   //bruk denne når tabellene er sammenkoblet|| empty($kull)
 		header("Location: ../signup_student.php?signup=empty");
 		exit();
 	} else {
 			//Insert the user into the database
-			$sql = "INSERT INTO Studenter (Fornavn, Etternavn, Studieretning_id, Epost, Passord, Kull) VALUES ('$first', '$last', '$email', '$pwd', '$kull', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
+			$sql = "INSERT INTO Studenter (Fornavn, Etternavn, Epost, Kull, Passord, Studieretning_id) VALUES ('$first', '$last', '$email','$kull', '$pwd', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
 			mysqli_query($conn, $sql);
 			header("Location: ../../index.php?signup=success");
 			exit();

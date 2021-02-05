@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,10 +16,10 @@
     <div id="wrapper">
 
         <div id="nav">
-            <a href="velkommen.php">Hjem</a>
-            <a href="index.php">Emne</a>
-            <a href="om.php">Om oss</a>
-            <span class="regis"><a href = "registrer.php">Registrer</a></span>
+            <a href="welcome.php">Hjem</a>
+            <a href="../index.php">Emne</a>
+            <a href="about.php">Om oss</a>
+            <span class="regis"><a href = "signup_student.php">Registrer</a></span>
             <span class="regis"><a href = "login.php">Login</a></span>
         </div>
 

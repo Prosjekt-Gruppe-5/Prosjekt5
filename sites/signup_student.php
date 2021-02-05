@@ -1,3 +1,8 @@
+<?php
+include_once 'includes/dbh.inc.php';
+$studieretning = "SELECT * FROM Studieretning";
+$studieretning_conn = $conn->query($studieretning);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +57,7 @@
                 <p>Kull:</p>
                 <input type="number" name="kull" id="kull_id" min="2021" max="2022"><br>
                 <select name="Studieretning" id="Studieretning_id">
-                <?php while($rad = mysqli_fetch_array($Studieretning_conn)) { ?>
+                <?php while($rad = mysqli_fetch_array($studieretning_conn)) { ?>
                     <option value="<?php echo $rad["Studieretning_id"];?>"><?php echo $rad["Studieretningnavn"];?></option>
                 <?php } ?>
                 </select>
