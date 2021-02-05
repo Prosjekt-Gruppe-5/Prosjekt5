@@ -28,6 +28,15 @@
                       <span class="regis"><a href = "sites/signup_student.php">Registrer</a></span>';
                   }
               ?>
+         <?php
+                  if (isset($_SESSION['loggedin_student'])) {
+                    echo '<span class="regis"><a href = "sites/message_student.php">Message_student</a></span>';
+                  } else if (isset($_SESSION['loggedin_foreleser'])){
+                      echo '<span class="regis"><a href = "sites/message_foreleser.php">Message_foreleser</a></span>';
+                  }else{
+                    echo '<span class="regis"><a href = "sites/message_gjest.php">Message_gjest</a></span>';
+                  }
+              ?>     
         </div>
         </div>
 

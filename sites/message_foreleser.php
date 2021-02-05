@@ -38,12 +38,12 @@ $meldinger_1_conn = $conn->query($meldinger_1);
 </head>
 <body>
 <div id="featured-content">
-            <input type="number" name="pin">
-            <?php if(isset('Pin')) ?>
+
            <p><strong>Alle meldinger fra studenter: </strong></p>
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
             <p><?php echo $rad1["Melding_id"] ?></p></span>
             <p><?php echo $rad1["Meldingstekst"] ?></p></span>
+            <p><?php echo $rad1["Svar"] ?></p></span>
             <?php } ?>
             <form method='POST'>
                 <label for='message'><strong>Svar til student:</strong></label>

@@ -1,6 +1,6 @@
 <?php
-
-if(isset($_SESSION["loggedin_student"]) && $_SESSION["loggedin_student"] === false){
+session_start();
+if(isset($_SESSION["Student_id"]) && $_SESSION["Student_id"] === false){
     header("location: ../../index.php");
     exit;
 }
