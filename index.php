@@ -18,6 +18,7 @@
 
 <div id="nav">
     <a href="index.php">Hjem</a>
+    <a href="dokumentasjon.html">Dokumentasjon</a>   
     <?php
                   if (isset($_SESSION['loggedin'])) {
                       echo '<form action="sites/includes/logout.inc.php" method="POST">
@@ -36,8 +37,7 @@
                   }else{
                     echo '<span class="regis"><a href = "sites/message_gjest.php">Message_gjest</a></span>';
                   }
-              ?>
-              <a href="dokumentasjon.html"></a>     
+              ?>  
         </div>
         </div>
 
