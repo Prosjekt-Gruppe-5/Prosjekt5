@@ -51,8 +51,9 @@ $meldinger_1_conn = $conn->query($meldinger_1);
             <?php if(isset($_GET['pin']) != NULL) {?>
            <p><strong>Alle meldinger fra studenter: </strong></p>
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
-            <p><?php echo $rad1["Melding_id"] ?></p></span>
-            <p><?php echo $rad1["Meldingstekst"] ?></p></span>
+            <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
+            <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
+            <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
             <form method="get">
                 <input type="text" readonly value="Upassende/Spam" name="hei">
                 <input type="submit" value="Rapport" name="sumbit1">
