@@ -1,5 +1,11 @@
 <?php
 
+if(isset($_SESSION["loggedin_student"]) && $_SESSION["loggedin_student"] === false){
+    header("location: ../../index.php");
+    exit;
+}
+ 
+
 include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
