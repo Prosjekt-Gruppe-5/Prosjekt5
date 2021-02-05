@@ -13,7 +13,7 @@ if(!empty($_GET['Emnenavn']))
 }
 else
 {
-	response(400,"RIP.",NULL);
+	response(400,"Putt et parameter inn i URLen (Emnenavn = ...).",NULL);
 }
 
 function response($status,$status_message,$data)
@@ -33,13 +33,13 @@ function show($emnenavn)
 {
 	global $conn;
 	
-	$query = $conn->prepare('SELECT * FROM ? WHERE ? = ?');
+	$query = $conn->prepare('SELECT * FROM Emner WHERE Emnenavn = ?');
 		
 	//echo preg_replace('?', $username, $result->queryString);
 
 	$query->bindParam(1, $emnenavn, PDO::PARAM_STR, 50);
-    $query->bindParam(2, $emnekode, PDO::PARAM_STR, 50);
-	$query->bindParam(3, $emnekode, PDO::PARAM_STR, 50);
+    //$query->bindParam(2, $emnekode, PDO::PARAM_STR, 50);
+	//$query->bindParam(3, $emnekode, PDO::PARAM_STR, 50);
 	
 	$query->execute();
 
