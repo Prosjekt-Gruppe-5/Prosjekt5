@@ -3,11 +3,10 @@ header("Content-Type:application/json");
 require "connect.php";
 
 
-get_melding();
 
 $emnenavn=$_GET['Emnenavn'];
 //$emnekode = get_emnekode($emnenavn);
-show($emnenavn);
+//show($emnenavn);
 
 
 $melding_id=$_POST['Melding_id'];
@@ -16,6 +15,11 @@ $svar=$_POST['Svar'];
 $emne_id=$_POST['Emne_id'];
 
 insert($meldingstekst,$svar,$emne_id);
+get_melding();
+
+function _construct($conn){
+	$this->db = $conn;
+}
 
 
 
@@ -40,7 +44,7 @@ function show($emnenavn)
     echo "</br>Emnenavn : ".$result['Emnenavn']."</br>Emnekode : ".$result['Emnekode']."</br> ";
 }
 
-function insert($meldingstekst,$svar,$emne_id)
+/*function insert($meldingstekst,$svar,$emne_id)
 {
 	global $conn;
 
@@ -52,7 +56,7 @@ function insert($meldingstekst,$svar,$emne_id)
 
 	$query->execute();
 
-	/*
+
 	$query = $conn->query("SELECT * FROM Meldinger");
 
 	$result = $query->fetchAll();
@@ -111,3 +115,23 @@ function get_emnekode($emnenavn){
 	}
 }
 */
+
+
+
+public function insert($meldingstekst,$svar,$emne_id){
+	try {
+		$sql = "INSERT INTO Meldinger(Meldingstekst,Svar,Emne_id) VALUES (:meldingstekst, :svar, :emneid)";
+		$stmt = $this->db->prepare($sql);
+
+		$stmt =bindParam(":meldingstekst", $meldingstekst);
+		$stmt =bindParam(":svar", $svar);
+		$stmt =bindParam(":emneid", $emne_id);
+
+		$stmt->execute();
+		return true;
+
+	} catch (PDOException) {
+		echo "Errorrrrrrrr får ikke sendt melding idiot";
+	}
+
+}
