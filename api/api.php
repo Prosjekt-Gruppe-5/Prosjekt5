@@ -36,7 +36,7 @@ function show($emnenavn)
 	
 	$query = $conn->prepare('SELECT Emnenavn,Emnekode FROM Emner WHERE Emnenavn = ?');
 		
-	$query->bindParam(1, $emnenavn, PDO::PARAM_STR);
+	$query->bindParam(1, $emnenavn, PDO::PARAM_STR, 50);
     //$query->bindParam(2, $Emnekode, PDO::PARAM_STR, 50);
 	
 	$query->execute();
