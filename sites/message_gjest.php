@@ -10,7 +10,7 @@ include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
             {
-        $sql = sprintf("SELECT Kommentartekst FROM Kommentar WHERE Melding_id = '". $_POST['test'] ."'");              
+        $sql = sprintf("SELECT Kommentartekst FROM Kommentar JOIN Meldinger WHERE Melding_id = '". $_POST['test'] ."'");              
             $conn->query($sql);
             //var_dump($conn);
             }
@@ -30,7 +30,7 @@ $emner_conn = $conn->query($emner);
 $meldinger = "SELECT * FROM Meldinger";
 $meldinger_conn = $conn->query($meldinger);
 
-$meldinger_1 = "SELECT * FROM Kommentar WHERE Kommentar.Melding_id = Meldinger.Melding_id";
+$meldinger_1 = "SELECT * FROM Meldinger";
 $meldinger_1_conn = $conn->query($meldinger_1);
 ?>
 <!DOCTYPE html>
