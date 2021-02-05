@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 		exit();
 	} else {
 			//Insert the user into the database
-			$sql = "INSERT INTO Foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$pwd', '$emner');";
+			$sql = "INSERT INTO foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$pwd', '$emner');";
 
 			mysqli_query($conn, $sql);
 			include 'upload.inc.php';

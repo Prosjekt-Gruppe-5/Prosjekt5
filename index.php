@@ -1,37 +1,11 @@
 <?php
 session_start();
-//Mock "database" for testing av funksjonalitet, som må byttes ut med ekte DB når denne er oppe
-    $mockDBSubjects = array(
-        '1' => array(
-            'name' => 'Testemne 1',
-            'lecturer' => 'Per Pettersen',
-            'messages' => array(
-                'Første testmelding for emne 1',
-                'Andre testmelding for emne 1',
-                'Tredje testmelding for emne 1'
-            ),
-        ),
+include_once 'sites/includes/dbh.inc.php';
+$foreleser = "SELECT * FROM foreleser";
+$foreleser_conn = $conn->query($foreleser);
 
-        '2' => array(
-            'name' => 'Testemne 2',
-            'lecturer' => 'Gunn Gundersen',
-            'messages' => array(
-                'Første testmelding for emne 2',
-                'Andre testmelding for emne 2',
-                'Tredje testmelding for emne 2'
-            ),
-        ),
-
-        '3' => array(
-            'name' => 'Testemne 3',
-            'lecturer' => 'Ole Olsen',
-            'messages' => array(
-                'Første testmelding for emne 3',
-                'Andre testmelding for emne 3',
-                'Tredje testmelding for emne 3'
-            ),
-        )
-        );
+$emner = "SELECT * FROM Emner";
+$emner_conn = $conn->query($emner);
 ?>
 
 <!DOCTYPE html>
@@ -68,14 +42,9 @@ session_start();
                 <label for='subject'><strong>Emne:</strong></label>
 
                 <select name='subject' id='subject'>
-                    <option value='0' disabled='true' selected='true'>-- Velg emne --</option>
-                    <?php 
-                        foreach($mockDBSubjects as $key => $value) {
-                            echo "
-                            <option value=" . $key . ">" . $mockDBSubjects[$key]['name'] . "</option>
-                            ";
-                        }
-                    ?>
+                <?php while($rad = mysqli_fetch_array($emner_conn)) { ?>
+                    <option value="<?php echo $rad["Emne_id"];?>"><?php echo $rad["Emnenavn"];?></option>
+                    ?><?php } ?>
                 </select>
 
                 <input type='submit' value='Velg'>
@@ -84,8 +53,8 @@ session_start();
             <?php 
                 if(ISSET($_GET['subject']) && $_GET['subject'] != '0') {
                     echo "
-                    <h2>" . $mockDBSubjects[$_GET['subject']]['name'] . "</h2>
-                    <p><strong>Foreleser: </strong>" . $mockDBSubjects[$_GET['subject']]['lecturer'] . "</p>
+                    <h2>" . $emner = $_GET['subject']['Emnenavn'] . "<h2>
+                    <p><strong>Foreleser: </strong>" . $rad1 = mysqli_fetch_array($foreleser_conn); $rad1['Fornavn'] . "</p>
                   
                     <form action='index.php' method='post' id='messageForm'>
                         <input type='hidden' name='messageSubject' id='messageSubject' value=" . $_GET['subject'] . ">

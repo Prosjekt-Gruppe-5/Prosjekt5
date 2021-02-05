@@ -64,7 +64,7 @@ $emner_conn = $conn->query($emner);
                 <input type="file" name="fileToUpload" id="fileToUpload"><br>
                 <p>Password:</p>
                 <input type="password" name="pwd" id="pwd_id" placeholder="Password"><br>
-                <a><input type="submit" value="Upload Image" onclick="return IsEmpty()" name="submit"></a>
+                <a><input type="submit" value="submit" onclick="return IsEmpty()" name="submit"></a>
             </form>
     </main>
     <script type="text/javascript">
