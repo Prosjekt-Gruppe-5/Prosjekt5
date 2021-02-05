@@ -1,5 +1,5 @@
 <?php
-
+					
 $DB_HOST = "158.39.188.205";
 $DB_NAME = "Datasikkerhet";
 $DB_USER = "datasikkerhet";
@@ -11,7 +11,7 @@ try{
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  // To turn on error mode for debugging errors
 	$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);  // To get maximum sql injection protection
    // echo "Connected successfully";
-}
+} 
 catch(PDOException $e){
     echo "Connection failed: " . $e->getMessage();
 }
