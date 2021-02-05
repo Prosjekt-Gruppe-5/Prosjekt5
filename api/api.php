@@ -4,12 +4,13 @@ header("Content-Type:application/json");
 require "connect.php";
 
 
-//get_emne();
+get_emne();
+echo "<br>"
 
 if(!empty($_GET['Emnenavn']))
 {
 	$emnenavn=$_GET['Emnenavn'];
-	$emnekode = get_emnekode($emnenavn);
+	//$emnekode = get_emnekode($emnenavn);
 	show($emnenavn);
 }
 else
@@ -34,16 +35,18 @@ function show($emnenavn)
 {
 	global $conn;
 	
-	$query = $conn->prepare('SELECT Emnenavn,Emnekode FROM Emner WHERE Emnenavn = ?');
+	$query = $conn->prepare('SELECT Emnenavn, Emnekode FROM Emner WHERE Emnenavn = ?');
 		
+	//echo preg_replace('?', $username, $result->queryString);
+
 	$query->bindParam(1, $emnenavn, PDO::PARAM_STR, 50);
-    //$query->bindParam(2, $Emnekode, PDO::PARAM_STR, 50);
+    //$query->bindParam(2, $emnekode, PDO::PARAM_STR, 50);
 	
 	$query->execute();
 
 	$result = $query->fetch();
 
-	echo "</br><b>jajajaja</b></br>";
+	echo "<br>" . "Ny kode!" . "</br>";
 	
     echo "</br>Emnenavn : ".$result['Emnenavn']."</br>Emnekode : ".$result['Emnekode']."</br> ";	 
 	
