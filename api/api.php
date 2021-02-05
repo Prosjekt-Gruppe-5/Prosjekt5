@@ -52,7 +52,7 @@ function insert($meldingstekst,$svar,$emne_id)
 
 	$query->execute();
 
-
+	/*
 	$query = $conn->query("SELECT * FROM Meldinger");
 
 	$result = $query->fetchAll();
@@ -61,6 +61,7 @@ function insert($meldingstekst,$svar,$emne_id)
 	{
 		echo "Meldingstekst : " . $object['Meldingstekst'] . " Svar : ".$object['Svar'] . "Emne_id : " . $object['Emne_id'];	 
 	}
+	*/
    
 }
 
