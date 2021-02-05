@@ -36,7 +36,8 @@
                   }else{
                     echo '<span class="regis"><a href = "sites/message_gjest.php">Message_gjest</a></span>';
                   }
-              ?>     
+              ?>
+              <a href="dokumentasjon.html"></a>     
         </div>
         </div>
 
