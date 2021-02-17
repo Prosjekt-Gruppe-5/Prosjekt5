@@ -32,6 +32,13 @@ $studieretning_conn = $conn->query($studieretning);
         text-decoration: none;
         font-size: 1.6em;
     }
+    #req{
+        font-family: 'Rubik', sans-serif;
+        font-size: 1em;
+        width: 300px;
+        text-align: center;
+        margin: 0 auto;
+    }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,6 +69,7 @@ $studieretning_conn = $conn->query($studieretning);
                 <?php } ?>
                 </select>
                 <p>Password:</p>
+                <p id="req">Password must contain atleast eight characters, one uppercase letter, one lowercase letter, one number and one special character</p>
                 <input type="password" name="pwd" id="pwd_id" placeholder="Password"><br>
                 <a><input type="submit" onclick="return IsEmpty()" name="submit"></a>
             </form>

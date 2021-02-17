@@ -89,7 +89,7 @@ $emner_conn = $conn->query($emner);
 
                 var pwd1 = document.forms["form1"]["pwd"].value;
                 if (pwd1 == "") {
-                    alert("Password must be filled out");
+                    alert("Password must atleast have minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character");
                     return false;
                 }
               

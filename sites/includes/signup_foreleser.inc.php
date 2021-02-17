@@ -25,13 +25,41 @@ if (isset($_POST['submit'])) {
 		header("Location: ../signup_foreleser.php?signup=empty");
 		exit();
 	} else {
-			//Insert the user into the database
-			$sql = "INSERT INTO Foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$pwd', '$emner');";
-
-			mysqli_query($conn, $sql);
-			include 'upload.inc.php';
-			header("Location: ../../index.php?signup=success");
+		//Check if input characters are valid
+		if (!preg_match("/^[a-zA-Z]*$/", $first) || !preg_match("/^[a-zA-Z]*$/", $last)) {
+			header("Location: ../signup.php?signup=invalid");
 			exit();
+		} else {
+			if (!preg_match("/^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/", $pwd)) {
+				header("Location: ../signup.php?Password=invalid");
+				exit();
+			} else {
+				//Check if email is valid
+				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+					header("Location: ../signup.php?signup=email");
+					exit();
+				} else {
+					$sql = "SELECT * FROM Foreleser WHERE brukerid='$email'";
+					$result = mysqli_query($conn, $sql);
+					$resultCheck = mysqli_num_rows($result);
+
+					if ($resultCheck > 0) {
+						header("Location: ../signup.php?signup=usertaken");
+						exit();
+					} else {
+						//Hashing the password
+						$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+						//Insert the user into the database
+						$sql = "INSERT INTO Foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$pwd', '$emner');";
+
+						mysqli_query($conn, $sql);
+						include 'upload.inc.php';
+						header("Location: ../../index.php?signup=success");
+						exit();
+					}
+				}
+			}
+		}
 	}
 
 } else {

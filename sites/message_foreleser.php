@@ -41,9 +41,9 @@ $meldinger_1_conn = $conn->query($meldinger_1);
 
            <p><strong>Alle meldinger fra studenter: </strong></p>
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
-            <p><?php echo $rad1["Melding_id"] ?></p></span>
-            <p><?php echo $rad1["Meldingstekst"] ?></p></span>
-            <p><?php echo $rad1["Svar"] ?></p></span>
+            <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
+            <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
+            <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
             <?php } ?>
             <form method='POST'>
                 <label for='message'><strong>Svar til student:</strong></label>
