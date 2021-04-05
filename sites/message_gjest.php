@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION["loggedin_foreleser"]) && $_SESSION["loggedin_foreleser"] === false){
-    header("location: ../../index.php");
+if(isset($_SESSION["loggedin"])){
+    header("location: ../index.php");
     exit;
 }
  
@@ -37,7 +37,7 @@ $meldinger_1_conn = $conn->query($meldinger_1);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <title>HIØ meldingssystem</title>s
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,6 +67,12 @@ $meldinger_1_conn = $conn->query($meldinger_1);
                     <option value="<?php echo $rad["Melding_id"];?>"><?php echo $rad["Melding_id"];?></option>
                 ?><?php } ?>
                 </select>
+                <div class="elem-group">
+                    <label for="captcha">Please Enter the Captcha Text</label>
+                    <img src="includes/capcha.inc.php" alt="CAPTCHA" class="captcha-image"><i class="fas fa-redo refresh-captcha"></i>
+                    <br>
+                    <input type="text" id="captcha" name="captcha_challenge" pattern="[A-Z]{6}">
+                </div>
                 <input type='submit' value='submit' name='submit'>
             </form>
             <?php } ?>    

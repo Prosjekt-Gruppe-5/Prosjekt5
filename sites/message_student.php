@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION["Student_id"]) && $_SESSION["Student_id"] === false){
-    header("location: ../../index.php");
+if(!isset($_SESSION["student_id"])){
+    header("location: ../index.php");
     exit;
 }
  
@@ -48,7 +48,9 @@ $meldinger_conn = $conn->query($meldinger)
                     <option value="<?php echo $rad["Emne_id"];?>"><?php echo $rad["Emnenavn"];?></option>
                     ?><?php } ?>
                 </select>
-        <input type='submit' value='Velg'>
+        <?php 
+       echo "<input type='submit' value='Velg'>"
+        ?>
     </form>
 
     <?php 

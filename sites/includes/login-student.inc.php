@@ -3,8 +3,8 @@
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../../index.php");
+if(isset($_SESSION["loggedin"])){
+    header("location: ../index.php");
     exit;
 }
  
@@ -56,11 +56,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $password);
                     if(mysqli_stmt_fetch($stmt)){
+                        $hashedPwdCheck = password_verify($pwd, $row['bruker_pwd']);
+				        if ($hashedPwdCheck == false) {
+					    header("Location: ../logginn.php?logginn=error");
+					    exit();
+				         } elseif ($hashedPwdCheck == true) {
                             // Store data in session variables
                             //$_SESSION["loggedin_student"] = true;
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["Student_id"] = $id;
-                            $_SESSION["email"] = $username;                            
+                            $_SESSION["loggedin_student"] = true;
+						    $_SESSION["loggedin"] = true;                          
                             
                             // Redirect user to welcome page
                             header("location: ../../index.php?logginn=success");
@@ -81,6 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
     }
+}
     
     // Close connection
     mysqli_close($conn);

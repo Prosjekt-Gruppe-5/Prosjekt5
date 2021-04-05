@@ -1,7 +1,8 @@
 <?php
 session_start();
-if(isset($_SESSION["loggedin_foreleser"]) && $_SESSION["loggedin_foreleser"] === false){
-    header("location: ../../index.php");
+$_SESSION['startTime'] = time();
+if(!isset($_SESSION["loggedin_foreleser"])){
+    header("location: ../index.php");
     exit;
 }
  

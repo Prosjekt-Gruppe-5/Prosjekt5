@@ -1,6 +1,7 @@
 <?php
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../welcome.php");
+session_start();
+if(isset($_SESSION["loggedin"])){
+    header("location: ../index.php");
     exit;
 }
 if (isset($_POST['submit'])) {
@@ -21,10 +22,10 @@ if (isset($_POST['submit'])) {
 	} else {
 		//Check if input characters are valid
 		if (!preg_match("/^[a-zA-Z]*$/", $first) || !preg_match("/^[a-zA-Z]*$/", $last)) {
-			header("Location: ../signup.php?signup=invalid");
+			header("Location: ../signup.php?Name=invalid");
 			exit();
 		} else {
-			if (!preg_match("/^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/", $pwd)) {
+			if (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/", $pwd)) {
 				header("Location: ../signup.php?Password=invalid");
 				exit();
 				} else {
@@ -33,7 +34,7 @@ if (isset($_POST['submit'])) {
 					header("Location: ../signup.php?signup=email");
 					exit();
 				} else {
-					$sql = "SELECT * FROM idlogginn WHERE brukerid='$uid'";
+					$sql = "SELECT * FROM Studenter WHERE brukerid='$email'";
 					$result = mysqli_query($conn, $sql);
 					$resultCheck = mysqli_num_rows($result);
 
@@ -42,10 +43,12 @@ if (isset($_POST['submit'])) {
 						exit();
 					} else {
 						//Hashing the password
-						$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+						$hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
 						//Insert the user into the database
-						$sql = "INSERT INTO Studenter (Fornavn, Etternavn, Epost, Kull, Passord, Studieretning_id) VALUES ('$first', '$last', '$email','$kull', '$pwd', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
+						$sql = "INSERT INTO Studenter (Fornavn, Etternavn, Epost, Kull, Passord, Studieretning_id) VALUES ('$first', '$last', '$email','$kull', '$hashedpwd', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
 						mysqli_query($conn, $sql);
+						$_SESSION["loggedin_student"] = true;
+						$_SESSION["loggedin"] = true;
 						header("Location: ../../index.php?signup=success");
 						exit();
 					}

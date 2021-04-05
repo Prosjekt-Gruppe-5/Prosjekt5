@@ -1,6 +1,7 @@
 <?php
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+session_start();
+if(isset($_SESSION["loggedin"])){
+    header("location: ../index.php");
     exit;
 }
 if (isset($_POST['submit'])) {
@@ -50,10 +51,12 @@ if (isset($_POST['submit'])) {
 						//Hashing the password
 						$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 						//Insert the user into the database
-						$sql = "INSERT INTO Foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$pwd', '$emner');";
+						$sql = "INSERT INTO Foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$hashedPwd', '$emner');";
 
 						mysqli_query($conn, $sql);
 						include 'upload.inc.php';
+						$_SESSION["loggedin_foreleser"] = true;
+						$_SESSION["loggedin"] = true;
 						header("Location: ../../index.php?signup=success");
 						exit();
 					}
