@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["student_id"])){
+if(!isset($_SESSION["loggedin_student"])){
     header("location: ../index.php");
     exit;
 }
@@ -58,11 +58,12 @@ $meldinger_conn = $conn->query($meldinger)
             echo "
             <h2>Emner:". $emner = $rad['Emnenavn']." </h2>";
             echo"
-            <form method='POST'>
+            <form name='form1' method='POST'>
                 <label for='message'><strong>Melding til foreleser:</strong></label>
                 <textarea id='message1' name='message1'></textarea>
                 <input hidden name='emneid' id='messageSubject' value=" . $_GET["subject"] . "><br>
-                <input type='submit' value='submit' name='submit'>
+                <input type='text' name='PIN_text' id='PIN_text'>
+                <input type='submit' value='submit' onclick='return IsEmpty()' name='submit'>
             </form>
 
             <p><strong>Alle meldinger: </strong></p>
@@ -72,6 +73,7 @@ $meldinger_conn = $conn->query($meldinger)
             <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
             <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
             <?php }} ?>
+            <script src="../js/empty.js"> </script>
     
 </body>
 </html>

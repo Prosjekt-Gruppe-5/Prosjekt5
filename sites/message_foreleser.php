@@ -54,8 +54,9 @@ $meldinger_1_conn = $conn->query($meldinger_1);
                     <option value="<?php echo $rad["Melding_id"];?>"><?php echo $rad["Melding_id"];?></option>
                 ?><?php } ?>
                 </select>
+                <input type='text' name='PIN_text' id='PIN_text'>
                 <input type='submit' value='submit' name='submit'>
             </form>
-    
+            <script src="../js/empty.js"> </script>
 </body>
 </html>

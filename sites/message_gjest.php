@@ -10,7 +10,7 @@ include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
             {
-        $sql = sprintf("SELECT Kommentartekst FROM Kommentar JOIN Meldinger WHERE Melding_id = '". $_POST['test'] ."'");              
+            $sql = sprintf("SELECT * FROM Kommentar JOIN Meldinger WHERE Melding_id = 'Kommentar_id'");              
             $conn->query($sql);
             //var_dump($conn);
             }
@@ -32,6 +32,9 @@ $meldinger_conn = $conn->query($meldinger);
 
 $meldinger_1 = "SELECT * FROM Meldinger";
 $meldinger_1_conn = $conn->query($meldinger_1);
+
+$Kommentar = "SELECT * FROM Kommentar";
+$Kommentar_conn = $conn->query($Kommentar);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +46,7 @@ $meldinger_1_conn = $conn->query($meldinger_1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="featured-content">
+    <div id="featured-content">
             <form action="" method="get">
             <input type="number" name="pin">
             <input type="submit" value="sumbit" name="submit">
@@ -54,27 +57,53 @@ $meldinger_1_conn = $conn->query($meldinger_1);
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
             <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
             <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
+            <?php } ?>
+            <?php while($rad2 = mysqli_fetch_array($Kommentar_conn)) {?>
+            <p>Melding ID: <?php echo $rad2["Kommentar"] ?></p></span>
+            <?php } ?>
             <form method="get">
                 <input type="text" readonly value="Upassende/Spam" name="hei">
                 <input type="submit" value="Rapport" name="sumbit1">
             </form>
-            <?php } ?>
+            
             <form method='POST'>
                 <label for='message'><strong>Svar til student:</strong></label>
                 <textarea id='message1' name='message1'></textarea><br>
                 <select name='test' id='subject'>
                 <?php while($rad = mysqli_fetch_array($meldinger_1_conn)) { ?>
                     <option value="<?php echo $rad["Melding_id"];?>"><?php echo $rad["Melding_id"];?></option>
-                ?><?php } ?>
+                <?php } ?>
                 </select>
-                <div class="elem-group">
-                    <label for="captcha">Please Enter the Captcha Text</label>
-                    <img src="includes/capcha.inc.php" alt="CAPTCHA" class="captcha-image"><i class="fas fa-redo refresh-captcha"></i>
-                    <br>
-                    <input type="text" id="captcha" name="captcha_challenge" pattern="[A-Z]{6}">
-                </div>
-                <input type='submit' value='submit' name='submit'>
+                <input type="checkbox" name="check1" id="check1">
+                <input type="checkbox" name="check2" id="check2">
+                <input type="checkbox" name="check3" id="check3">
+                <input type="checkbox" name="check4" id="check4">
+                <input type='submit' value='submit' onclick="return IsEmpty()" name='submit'>
             </form>
-            <?php } ?>    
+        <?php } ?>    
+
+        <script type="text/javascript">
+            function IsEmpty() {
+                var first1 = document.forms["form1"]["message1"].value;
+                if (first1 == "") {
+                    alert("Message must be filled out");
+                    return false;
+                }
+
+                var last1 = document.forms["form1"]["test"].value;
+                if (last1 == "") {
+                    alert("ID must be filled out");
+                    return false;
+                }
+
+                if (
+                    theForm.CHECK1.checked == false &&
+                    theForm.CHECK3.checked == false)
+                {
+                    alert ('You didn\'t choose any of the checkboxes!');
+                    return false;
+                }
+            }        
+        </script>
 </body>
 </html>
