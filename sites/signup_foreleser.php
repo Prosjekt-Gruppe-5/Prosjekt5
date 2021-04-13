@@ -1,6 +1,6 @@
 <?php
 include_once 'includes/dbh.inc.php';
-$emner = "SELECT * FROM Emner";
+$emner = "SELECT * FROM Emner_view";
 $emner_conn = $conn->query($emner);
 ?>
 <!DOCTYPE html>

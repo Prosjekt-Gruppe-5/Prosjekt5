@@ -1,6 +1,6 @@
 <?php
 include_once 'includes/dbh.inc.php';
-$studieretning = "SELECT * FROM Studieretning";
+$studieretning = "SELECT * FROM Studieretning_view";
 $studieretning_conn = $conn->query($studieretning);
 ?>
 <!DOCTYPE html>
