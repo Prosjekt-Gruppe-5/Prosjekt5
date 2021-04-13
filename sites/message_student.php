@@ -74,7 +74,7 @@ $meldinger_conn = $conn->query($meldinger)
             </form>
 
             <p><strong>Alle meldinger: </strong></p>
-            ";?>
+            "?>
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
             <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>

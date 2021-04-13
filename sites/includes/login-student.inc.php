@@ -1,6 +1,4 @@
 <?php
-// Initialize the session
-session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"])){
@@ -36,9 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
         $sql = "SELECT Epost, Passord FROM Studenter WHERE Epost = ?";
-        $result = mysqli_query($conn, $sql);
-		$resultCheck = mysqli_num_rows($result);
-        
+
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -52,15 +48,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                if(mysqli_stmt_num_rows($stmt) == 1){            
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $password);
-                    if ($row = mysqli_fetch_assoc($result)) {
-                        $hashedPwdCheck = password_verify($password, $row['Passord']);
-				        if ($hashedPwdCheck == false) {
-					    header("Location: ../logginn.php?logginn=error");
-					    exit();
-				         } elseif ($hashedPwdCheck == true) {
+                    mysqli_stmt_bind_result($stmt, $username, $hashed_password);
+                    if(mysqli_stmt_fetch($stmt)){
+                        if(password_verify($password, $hashed_password)){
+                            session_start();
                             // Store data in session variables
                             //$_SESSION["loggedin_student"] = true;
                             $_SESSION["loggedin_student"] = true;

@@ -37,7 +37,7 @@ function IsEmpty() {
     }
     var first3 = document.forms["form1"]["pin"].value;
     if (first3 != 2341) {
-        alert("Pin must be filled out");
+        alert("Wrong pin");
         return false;
     }
 } 
