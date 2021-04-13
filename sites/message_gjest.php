@@ -10,7 +10,7 @@ include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
             {
-        $sql = sprintf("UPDATE Meldinger_view SET Kommentar = '". $_POST['message1'] ."' WHERE Melding_id = '". $_POST['test'] ."'");              
+        $sql = sprintf("UPDATE meldinger_view SET Kommentar = '". $_POST['message1'] ."' WHERE Melding_id = '". $_POST['test'] ."'");              
             $conn->query($sql);
             //var_dump($conn);
             }
@@ -21,16 +21,16 @@ if(isset($_POST["submit"]))
             $conn->query($sql);
             //var_dump($conn);
             }
-$foreleser = "SELECT * FROM Foreleser_view";
+$foreleser = "SELECT * FROM foreleser_view";
 $foreleser_conn = $conn->query($foreleser);
 
-$emner = "SELECT * FROM Emner_view";
+$emner = "SELECT * FROM emner_view";
 $emner_conn = $conn->query($emner);
 
-$meldinger = "SELECT * FROM Meldinger_view";
+$meldinger = "SELECT * FROM meldinger_view";
 $meldinger_conn = $conn->query($meldinger);
 
-$meldinger_1 = "SELECT * FROM Meldinger_view";
+$meldinger_1 = "SELECT * FROM meldinger_view";
 $meldinger_1_conn = $conn->query($meldinger_1);
 ?>
 <!DOCTYPE html>

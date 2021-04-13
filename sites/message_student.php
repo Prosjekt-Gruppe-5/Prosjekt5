@@ -10,7 +10,7 @@ include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
             {
-        $sql = sprintf("INSERT INTO Meldinger_view (Meldingstekst, Emne_id) VALUES ('%s', '%d')",
+        $sql = sprintf("INSERT INTO meldinger_view (Meldingstekst, Emne_id) VALUES ('%s', '%d')",
                         $conn->real_escape_string($_POST["message1"]),
                         $conn->real_escape_string($_POST["emneid"])
                        );
@@ -19,13 +19,13 @@ if(isset($_POST["submit"]))
             //var_dump($conn);
             }
             
-$foreleser = "SELECT * FROM Foreleser_view";
+$foreleser = "SELECT * FROM foreleser_view";
 $foreleser_conn = $conn->query($foreleser);
 
-$emner = "SELECT * FROM Emner_view";
+$emner = "SELECT * FROM emner_view";
 $emner_conn = $conn->query($emner);
 
-$meldinger = "SELECT * FROM Meldinger_view";
+$meldinger = "SELECT * FROM meldinger_view";
 $meldinger_conn = $conn->query($meldinger)
 
 

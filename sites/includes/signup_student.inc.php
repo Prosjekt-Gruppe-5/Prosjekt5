@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
 					header("Location: ../signup.php?signup=email");
 					exit();
 				} else {
-					$sql = "SELECT * FROM Studenter WHERE brukerid='$email'";
+					$sql = "SELECT * FROM studenter_view WHERE brukerid='$email'";
 					$result = mysqli_query($conn, $sql);
 					$resultCheck = mysqli_num_rows($result);
 
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
 						//Hashing the password
 						$hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
 						//Insert the user into the database
-						$sql = "INSERT INTO Studenter_view (Fornavn, Etternavn, Epost, Kull, Passord, Studieretning_id) VALUES ('$first', '$last', '$email','$kull', '$hashedpwd', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
+						$sql = "INSERT INTO studenter_view (Fornavn, Etternavn, Epost, Kull, Passord, Studieretning_id) VALUES ('$first', '$last', '$email','$kull', '$hashedpwd', $Studieretning);"; //INSERT INTO, Kull Value:, '$kull'
 						mysqli_query($conn, $sql);
 						$_SESSION["loggedin_student"] = true;
 						$_SESSION["loggedin"] = true;

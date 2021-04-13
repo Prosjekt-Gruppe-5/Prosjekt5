@@ -1,6 +1,6 @@
 <?php
 include_once 'includes/dbh.inc.php';
-$studieretning = "SELECT * FROM Studieretning_view";
+$studieretning = "SELECT * FROM studieretning_view";
 $studieretning_conn = $conn->query($studieretning);
 ?>
 <!DOCTYPE html>
@@ -69,10 +69,9 @@ $studieretning_conn = $conn->query($studieretning);
                     <option value="<?php echo $rad["Studieretning_id"];?>"><?php echo $rad["Studieretningnavn"];?></option>
                 <?php } ?>
                 </select>
-                <p>Password:</p>
                 <p id="req">Password must contain atleast eight characters, one uppercase letter, one lowercase letter, one number and one special character</p>
-                <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
                 <input type="password" name="pwd" id="pwd_id" placeholder="Password"><br>
+                <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
                 <label for="">Pin Kode: </label>
                 <input type="number" name="pin" placeholder="PIN">
                 <a><input type="submit" onclick="return IsEmpty()" name="submit"></a>
