@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 
 	include_once 'dbh.inc.php';
 
-	$emne = $conn->query("SELECT * FROM Emner WHERE Emne_id = '{$_POST["emner"]}'");
+	$emne = $conn->query("SELECT * FROM Emner_view WHERE Emne_id = '{$_POST["emner"]}'");
         while($row = mysqli_fetch_array($emne)) {
             $emnenavn = $row['Emnenavn'];
         }
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 					header("Location: ../signup.php?signup=email");
 					exit();
 				} else {
-					$sql = "SELECT * FROM Foreleser WHERE brukerid='$email'";
+					$sql = "SELECT * FROM Foreleser_view WHERE brukerid='$email'";
 					$result = mysqli_query($conn, $sql);
 					$resultCheck = mysqli_num_rows($result);
 
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
 						//Hashing the password
 						$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 						//Insert the user into the database
-						$sql = "INSERT INTO Foreleser (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$hashedPwd', '$emner');";
+						$sql = "INSERT INTO Foreleser_view (Fornavn, Etternavn, Epost, Passord, Emne_id) VALUES ('$first', '$last', '$email', '$hashedPwd', '$emner');";
 
 						mysqli_query($conn, $sql);
 						include 'upload.inc.php';
