@@ -1,18 +1,10 @@
 <?php
-<<<<<<< HEAD
-
-if(isset($_SESSION["loggedin_student"]) && $_SESSION["loggedin_student"] === false){
-    header("location: ../../index.php");
-    exit;
-}
-=======
 session_start();
 if(!isset($_SESSION["loggedin_student"])){
     header("location: ../index.php");
     exit;
 }
  
->>>>>>> dev_Herman
 
 include_once "includes/dbh.inc.php";
 
