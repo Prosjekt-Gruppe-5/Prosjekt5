@@ -35,12 +35,17 @@ $meldinger_conn = $conn->query($meldinger)
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="../js/empty_student.js"> </script>
     <title>HIØ meldingssystem</title>
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    
 <div id="featured-content">
+<div id="nav">
+    <a href="../index.php">Hjem</a>
+</div>
         <form action='message_student.php' method='get'>
         <?php //if()  ?>
         <select name='subject' id='subject'>
@@ -62,7 +67,9 @@ $meldinger_conn = $conn->query($meldinger)
                 <label for='message'><strong>Melding til foreleser:</strong></label>
                 <textarea id='message1' name='message1'></textarea>
                 <input hidden name='emneid' id='messageSubject' value=" . $_GET["subject"] . "><br>
-                <input type='text' name='PIN_text' id='PIN_text'>
+                <p>Pin koder finner du på: <a href='../dokumentasjon.html'>Dokumentasjon</a></p>
+                <label for=''>Pin Kode: </label>
+                <input type='text' name='PIN_text' id='PIN_text' placeholder='PIN'>
                 <input type='submit' value='submit' onclick='return IsEmpty()' name='submit'>
             </form>
 
@@ -72,8 +79,9 @@ $meldinger_conn = $conn->query($meldinger)
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
             <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
             <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
+            <p>Gjest: <?php echo $rad1["Kommentar"] ?></p></span>
             <?php }} ?>
-            <script src="../js/empty.js"> </script>
+            
     
 </body>
 </html>

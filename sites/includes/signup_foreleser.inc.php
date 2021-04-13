@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION["loggedin"])){
-    header("location: ../index.php");
+    header("location: ../../index.php");
     exit;
 }
 if (isset($_POST['submit'])) {
@@ -14,7 +14,6 @@ if (isset($_POST['submit'])) {
             $emnenavn = $row['Emnenavn'];
         }
 
-	$id = mysqli_real_escape_string($conn, $_POST['id']);
 	$first = mysqli_real_escape_string($conn, $_POST['first']);
 	$last = mysqli_real_escape_string($conn, $_POST['last']);
 	$email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -31,7 +30,7 @@ if (isset($_POST['submit'])) {
 			header("Location: ../signup.php?signup=invalid");
 			exit();
 		} else {
-			if (!preg_match("/^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/", $pwd)) {
+			if (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/", $pwd)) {
 				header("Location: ../signup.php?Password=invalid");
 				exit();
 			} else {
@@ -64,7 +63,6 @@ if (isset($_POST['submit'])) {
 			}
 		}
 	}
-
 } else {
 	header("Location: ../signup_foreleser.php");
 	exit();

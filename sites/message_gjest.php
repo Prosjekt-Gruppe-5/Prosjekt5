@@ -10,7 +10,7 @@ include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
             {
-            $sql = sprintf("SELECT * FROM Kommentar JOIN Meldinger WHERE Melding_id = 'Kommentar_id'");              
+        $sql = sprintf("UPDATE Meldinger SET Kommentar = '". $_POST['message1'] ."' WHERE Melding_id = '". $_POST['test'] ."'");              
             $conn->query($sql);
             //var_dump($conn);
             }
@@ -32,24 +32,27 @@ $meldinger_conn = $conn->query($meldinger);
 
 $meldinger_1 = "SELECT * FROM Meldinger";
 $meldinger_1_conn = $conn->query($meldinger_1);
-
-$Kommentar = "SELECT * FROM Kommentar";
-$Kommentar_conn = $conn->query($Kommentar);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <script src="../js/empty.js"> </script>
+    <script src="../js/pin.js"> </script>
     <title>HIØ meldingssystem</title>s
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<div id="nav">
+    <a href="../index.php">Hjem</a>
+</div>
     <div id="featured-content">
-            <form action="" method="get">
-            <input type="number" name="pin">
-            <input type="submit" value="sumbit" name="submit">
+            <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
+            <form name="form2" action="" method="get">
+            <input type="number" name="pin" placeholder="PIN">
+            <input type="submit" value="sumbit" onclick='return Pin()' name="submit">
             </form>
             <?php if(isset($_GET['pin']) != NULL) {?>
            <p><strong>Alle meldinger fra studenter: </strong></p>
@@ -57,53 +60,25 @@ $Kommentar_conn = $conn->query($Kommentar);
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
             <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
             <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
-            <?php } ?>
-            <?php while($rad2 = mysqli_fetch_array($Kommentar_conn)) {?>
-            <p>Melding ID: <?php echo $rad2["Kommentar"] ?></p></span>
-            <?php } ?>
+            <p>Gjest: <?php echo $rad1["Kommentar"] ?></p></span>
             <form method="get">
                 <input type="text" readonly value="Upassende/Spam" name="hei">
                 <input type="submit" value="Rapport" name="sumbit1">
             </form>
+            <?php } ?>
             
-            <form method='POST'>
+            <form name='form1' method='POST'>
                 <label for='message'><strong>Svar til student:</strong></label>
                 <textarea id='message1' name='message1'></textarea><br>
                 <select name='test' id='subject'>
                 <?php while($rad = mysqli_fetch_array($meldinger_1_conn)) { ?>
                     <option value="<?php echo $rad["Melding_id"];?>"><?php echo $rad["Melding_id"];?></option>
-                <?php } ?>
+                ?><?php } ?>
                 </select>
-                <input type="checkbox" name="check1" id="check1">
-                <input type="checkbox" name="check2" id="check2">
-                <input type="checkbox" name="check3" id="check3">
-                <input type="checkbox" name="check4" id="check4">
-                <input type='submit' value='submit' onclick="return IsEmpty()" name='submit'>
+                <label for="">Pin Kode: </label>
+                <input type='text' name='PIN_text' id='PIN_text' placeholder="PIN">
+                <input type='submit' value='submit' onclick='return IsEmpty()' name='submit'>
             </form>
-        <?php } ?>    
-
-        <script type="text/javascript">
-            function IsEmpty() {
-                var first1 = document.forms["form1"]["message1"].value;
-                if (first1 == "") {
-                    alert("Message must be filled out");
-                    return false;
-                }
-
-                var last1 = document.forms["form1"]["test"].value;
-                if (last1 == "") {
-                    alert("ID must be filled out");
-                    return false;
-                }
-
-                if (
-                    theForm.CHECK1.checked == false &&
-                    theForm.CHECK3.checked == false)
-                {
-                    alert ('You didn\'t choose any of the checkboxes!');
-                    return false;
-                }
-            }        
-        </script>
+        <?php } ?> 
 </body>
 </html>

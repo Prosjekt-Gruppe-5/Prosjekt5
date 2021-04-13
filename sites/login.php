@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login-student</title>
+    <script src="../js/pin.js"> </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
@@ -10,8 +11,10 @@
     </style>
 </head>
 <body>
-    <!--Legg nav bar inn her-->
-
+<div id="nav">
+    <a href="../index.php">Hjem</a>
+    <a href="../dokumentasjon.html">Dokumentasjon</a>   
+</div>
     <div class="wrapper">
         <h2>Login for student</h2>
         <form action="includes/login-student.inc.php" method="POST">
@@ -22,8 +25,10 @@
                 <label>Passord</label>
                 <input type="password" name="password" class="form-control">
             </div>
+            <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
+            <label for="">Pin Kode: </label>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" onclick='return Pin()' class="btn btn-primary" value="Login">
             </div>
             <p>Er du foreleser? <a href="login-foreleser.php">Foreleser for login</a></p>
             <p>Har ikke bruker? <a href="signup_student.php">Registrer deg nå</a>.</p>

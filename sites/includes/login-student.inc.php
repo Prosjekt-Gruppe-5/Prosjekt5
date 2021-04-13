@@ -55,8 +55,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $password);
-                    if(mysqli_stmt_fetch($stmt)){
-                        $hashedPwdCheck = password_verify($pwd, $row['bruker_pwd']);
+                    if ($row = mysqli_fetch_assoc($result)) {
+                        $hashedPwdCheck = password_verify($password, $row['Passord']);
 				        if ($hashedPwdCheck == false) {
 					    header("Location: ../logginn.php?logginn=error");
 					    exit();

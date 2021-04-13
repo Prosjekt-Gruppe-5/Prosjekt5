@@ -33,20 +33,24 @@ $meldinger_1_conn = $conn->query($meldinger_1);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="../js/empty_foreleser.js"> </script>
     <title>HIØ meldingssystem</title>s
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div id="featured-content">
-
+<div id="nav">
+    <a href="../index.php">Hjem</a>
+</div>
            <p><strong>Alle meldinger fra studenter: </strong></p>
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
             <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
             <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
+            <p>Gjest: <?php echo $rad1["Kommentar"] ?></p></span>
             <?php } ?>
-            <form method='POST'>
+            <form name='form1' method='POST'>
                 <label for='message'><strong>Svar til student:</strong></label>
                 <textarea id='message1' name='message1'></textarea><br>
                 <select name='test' id='subject'>
@@ -54,9 +58,11 @@ $meldinger_1_conn = $conn->query($meldinger_1);
                     <option value="<?php echo $rad["Melding_id"];?>"><?php echo $rad["Melding_id"];?></option>
                 ?><?php } ?>
                 </select>
-                <input type='text' name='PIN_text' id='PIN_text'>
-                <input type='submit' value='submit' name='submit'>
+                <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
+                <label for="">Pin Kode: </label>
+                <input type='text' name='PIN_text' id='PIN_text' placeholder="PIN">
+                <input type='submit' value='submit' onclick='return IsEmpty()' name='submit'>
             </form>
-            <script src="../js/empty.js"> </script>
+            
 </body>
 </html>

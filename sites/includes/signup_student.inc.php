@@ -14,9 +14,10 @@ if (isset($_POST['submit'])) {
 	$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
 	$kull = mysqli_real_escape_string($conn, $_POST['kull']);
 	$Studieretning = mysqli_real_escape_string($conn, $_POST['Studieretning']);
+	$PIN = mysqli_real_escape_string($conn, $_POST['pin']);
 	//Error handler
 	//Check for empty fields
-	if (empty($first) || empty($last) || empty($email) || empty($pwd) || empty($kull) || empty($Studieretning)) {   //bruk denne når tabellene er sammenkoblet|| empty($kull)
+	if (empty($first) || empty($last) || empty($email) || empty($pwd) || empty($kull) || empty($Studieretning) || empty($PIN)) {   //bruk denne når tabellene er sammenkoblet|| empty($kull)
 		header("Location: ../signup_student.php?signup=empty");
 		exit();
 	} else {
