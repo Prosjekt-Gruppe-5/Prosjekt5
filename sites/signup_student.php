@@ -32,8 +32,16 @@ $studieretning_conn = $conn->query($studieretning);
         text-decoration: none;
         font-size: 1.6em;
     }
+    #req{
+        font-family: 'Rubik', sans-serif;
+        font-size: 1em;
+        width: 300px;
+        text-align: center;
+        margin: 0 auto;
+    }
     </style>
     <meta charset="UTF-8">
+    <script src="../js/signup_student.js"> </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -62,47 +70,13 @@ $studieretning_conn = $conn->query($studieretning);
                 <?php } ?>
                 </select>
                 <p>Password:</p>
+                <p id="req">Password must contain atleast eight characters, one uppercase letter, one lowercase letter, one number and one special character</p>
+                <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
                 <input type="password" name="pwd" id="pwd_id" placeholder="Password"><br>
+                <label for="">Pin Kode: </label>
+                <input type="number" name="pin" placeholder="PIN">
                 <a><input type="submit" onclick="return IsEmpty()" name="submit"></a>
             </form>
     </main>
-    <script type="text/javascript">
-            function IsEmpty() {
-                var first1 = document.forms["form1"]["first"].value;
-                if (first1 == "") {
-                    alert("Name must be filled out");
-                    return false;
-                }
-
-                var last1 = document.forms["form1"]["last"].value;
-                if (last1 == "") {
-                    alert("Surname must be filled out");
-                    return false;
-                }
-
-                var email1 = document.forms["form1"]["email"].value;
-                if (email1 == "") {
-                    alert("Email must be filled out");
-                    return false;
-                }
-
-                var pwd1 = document.forms["form1"]["pwd"].value;
-                if (pwd1 == "") {
-                    alert("Password must be filled out");
-                    return false;
-                }
-                var kull1 = document.forms["form1"]["kull"].value;
-                if (kull1 == "") {
-                    alert("Kull must be filled out");
-                    return false;
-                }
-                //var emne1 = document.forms["form1"]["emne"].value;
-                //if (emne1 == "") {
-                //    alert("Emne must be chosen");
-                //    alert("YOU WERE THE CHOSEN ONE, ANAKEN!!!")
-                //    return false;
-                //}
-            }        
-        </script>
     </body>
 </html>

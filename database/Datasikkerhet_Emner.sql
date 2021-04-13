@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: Datasikkerhet
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	5.7.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,34 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Emner`
+-- Table structure for table `emner`
 --
 
-DROP TABLE IF EXISTS `Emner`;
+DROP TABLE IF EXISTS `emner`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Emner` (
-  `Emne_id` int NOT NULL AUTO_INCREMENT,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `emner` (
+  `Emne_id` int(11) NOT NULL AUTO_INCREMENT,
   `Emnekode` varchar(45) NOT NULL,
   `Emnenavn` varchar(45) NOT NULL,
-  `PIN` int NOT NULL,
-  `Foreleser_id` int DEFAULT NULL,
-  `Studieretning_id` int NOT NULL,
+  `PIN` int(11) NOT NULL,
+  `Foreleser_id` int(11) DEFAULT NULL,
+  `Studieretning_id` int(11) NOT NULL,
   PRIMARY KEY (`Emne_id`),
   KEY `Studieretning_id` (`Studieretning_id`),
   KEY `Foreleser_id` (`Foreleser_id`),
-  CONSTRAINT `emner_ibfk_1` FOREIGN KEY (`Studieretning_id`) REFERENCES `Studieretning` (`Studieretning_id`),
-  CONSTRAINT `emner_ibfk_2` FOREIGN KEY (`Foreleser_id`) REFERENCES `Foreleser` (`Foreleser_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=DEFAULT;
+  CONSTRAINT `emner_ibfk_1` FOREIGN KEY (`Studieretning_id`) REFERENCES `studieretning` (`Studieretning_id`),
+  CONSTRAINT `emner_ibfk_2` FOREIGN KEY (`Foreleser_id`) REFERENCES `foreleser` (`Foreleser_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Emner`
+-- Dumping data for table `emner`
 --
 
-LOCK TABLES `Emner` WRITE;
-/*!40000 ALTER TABLE `Emner` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Emner` ENABLE KEYS */;
+LOCK TABLES `emner` WRITE;
+/*!40000 ALTER TABLE `emner` DISABLE KEYS */;
+INSERT INTO `emner` VALUES (1,'ITM20817','Videoproduksjon',2341,NULL,1),(2,'ITM20718','Grafisk design',2314,NULL,1),(3,'ITM31519','Design av virtuelle miljoer',1231,NULL,1),(4,'ITF13019','Teknologi og samfunn',1514,NULL,2),(5,'ITM30617','Utvikling av interaktive nettsteder',5152,NULL,2),(6,'ITM31019','Digital markedsforing',9352,NULL,2),(7,'ITF10219','Programmering 1',4161,NULL,3),(8,'ITD15020','Kalkulus',7362,NULL,3),(9,'ITD20218','Statistikk og statistisk programmering',6214,NULL,3),(10,'ITF10511','Webutvikling',2314,NULL,4),(11,'ITF15019','Innforing i datasikkerhet',1234,NULL,4),(12,'ITF25019','Datasikkerhet i utvikling og drift',1251,NULL,4);
+/*!40000 ALTER TABLE `emner` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-01 16:57:19
+-- Dump completed on 2021-04-13 15:43:22
