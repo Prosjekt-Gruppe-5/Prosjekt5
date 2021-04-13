@@ -1,14 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
-include_once 'sites/includes/dbh.inc.php';
-$foreleser = "SELECT * FROM foreleser";
-$foreleser_conn = $conn->query($foreleser);
-
-$emner = "SELECT * FROM Emner";
-$emner_conn = $conn->query($emner);
-=======
->>>>>>> dev_Herman
 ?>
 
 <!DOCTYPE html>
