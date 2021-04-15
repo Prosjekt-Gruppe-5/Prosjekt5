@@ -21,19 +21,27 @@
                 <h1>Dokumentasjon steg 1.0</h1>
                 <br>
                 <p> Nettside:
-                <p> Denne nettsiden er lagt opp slik at du kan registrere deg som student eller foreleser. Her kan studenter velge studieretningen deres og forelesere kan velge faget de underviser. Både student og foreleser kan bytte passord hvis de vil det, det er en liten "bug" hvor passordet blir hashet når man prøver å bytte det. Login-systemet har ingen funksjon for å dehashe det etterpå så dette blir nok ikke fikset i steg 1.</p>
-                <br>
-                <p> En student kan sende melding til en foreleser anonymt, ved å velge emne foreleseren underviser i. Foreleseren kan gi svar på meldinger som blir sendt av studenter.
-                    For å sende melding som student/foreleser så man legge til /sites/melding_student eller _foreleser i URLen.  
+                <p> Denne nettsiden er lagt opp slik at du kan registrere deg som student eller foreleser. 
+                    Her kan studenter velge studieretningen deres og forelesere kan velge faget de underviser. 
+                    Både student og foreleser kan bytte passord hvis de vil det. Login-systemet er nå fikset for steg2.
+                    Brukerens passord blir nå hashet in i et view.
                 </p>
                 <br>
-                <p> Noe vi kunne lagt er en reCaptcha på melding systemene, men dette ble veldig vansklig siden man må ha en site key som man får fra google dev.</p>
+                <p> En student kan sende melding til en foreleser anonymt, ved å velge emne foreleseren underviser i. Foreleseren kan gi svar på meldinger som blir sendt av studenter.
+                    For å sende melding som student/foreleser må man være logget inn.
+                    Nytt i steg2 er XSS beskyttelse i meldingssystemet og liten input validering på alt med en input.(pin koder kan du se under) 
+                </p>
                 <br>
                 <p> Pin koder for foreleser signup, login og gjest meldinger er: 2341</p>
                 <p> Pin koder for foreleser meldingsystem submit/validering er: 622521511</p>
                 <p> Pin koder for student meldingsystem submit/validering er: 834216234512</p>
                 <p> Pin koder for gjest meldingsystem submit/validering er: 421312512</p>
-                <p> Disse pinkoden er gjort som en validerings test, en dårlig test. Vi lagde det sånn siden man ikke kan ha reCaptcha</p>
+                <p> Disse pinkodene er gjort som en validerings test (en dårlig test). 
+                    Noe vi kunne laget er en reCaptcha på melding systemene, men dette ble veldig vansklig siden man må ha en site key som man får fra google dev.
+                    Det er også alternative captchas man kan gjøre i JS men de var relativt komplekst å implentere.
+                </p>
+                <br>
+                <p> </p>
                 <br>
                 <p> API og app:
                 <br>
