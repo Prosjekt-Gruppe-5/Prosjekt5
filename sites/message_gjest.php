@@ -10,7 +10,7 @@ include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
             {
-        $sql = sprintf("UPDATE meldinger_view SET Kommentar = '". $_POST['message1'] ."' WHERE Melding_id = '". $_POST['test'] ."'");              
+        $sql = sprintf("UPDATE meldinger SET Kommentar = '". $_POST['message1'] ."' WHERE Melding_id = '". $_POST['test'] ."'");              
             $conn->query($sql);
             //var_dump($conn);
             }
@@ -58,16 +58,16 @@ $meldinger_1_conn = $conn->query($meldinger_1);
            <p><strong>Alle meldinger fra studenter: </strong></p>
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
-            <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
-            <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
-            <p>Gjest: <?php echo $rad1["Kommentar"] ?></p></span>
+            <p>Student: <?php echo htmlspecialchars($rad1["Meldingstekst"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>
+            <p>Foreleser: <?php echo htmlspecialchars($rad1["Svar"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>
+            <p>Gjest: <?php echo htmlspecialchars($rad1["Kommentar"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>
             <form method="get">
                 <input type="text" readonly value="Upassende/Spam" name="hei">
                 <input type="submit" value="Rapport" name="sumbit1">
             </form>
             <?php } ?>
             
-            <form name='form1' method='POST'>
+            <form name='form1' onsubmit='' method='POST'>
                 <label for='message'><strong>Svar til student:</strong></label>
                 <textarea id='message1' name='message1'></textarea><br>
                 <select name='test' id='subject'>

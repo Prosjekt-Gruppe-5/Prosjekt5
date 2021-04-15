@@ -10,4 +10,11 @@ function IsEmpty() {
         alert("Wrong pin");
         return false;
     }
+
+    function filter($str){
+        $str = addslashes($str);
+        $str = preg_replace("/<script>|<\/script>/i", "", $str);
+        $str = preg_replace("/<|>/i", "", $str);
+        return $str;
+    }
 }  

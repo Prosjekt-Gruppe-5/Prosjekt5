@@ -10,12 +10,13 @@ include_once "includes/dbh.inc.php";
 
 if(isset($_POST["submit"])) 
             {
-        $sql = sprintf("INSERT INTO meldinger_view (Meldingstekst, Emne_id) VALUES ('%s', '%d')",
+        $sql = sprintf("INSERT INTO meldinger (Meldingstekst, Emne_id) VALUES ('%s', '%d')",
                         $conn->real_escape_string($_POST["message1"]),
                         $conn->real_escape_string($_POST["emneid"])
+                        
                        );
-                     
             $conn->query($sql);
+            header("Location: message_student.php");
             //var_dump($conn);
             }
             
@@ -27,7 +28,6 @@ $emner_conn = $conn->query($emner);
 
 $meldinger = "SELECT * FROM meldinger_view";
 $meldinger_conn = $conn->query($meldinger)
-
 
 ?>
 <!DOCTYPE html>
@@ -60,10 +60,11 @@ $meldinger_conn = $conn->query($meldinger)
 
     <?php 
         if(ISSET($_GET['subject']) && $_GET['subject'] != '0'){
-            echo "
+           
+             echo "
             <h2>Emner:". $emner = $rad['Emnenavn']." </h2>";
             echo"
-            <form name='form1' method='POST'>
+            <form name='form1' onsubmit='return filter()' method='POST'>
                 <label for='message'><strong>Melding til foreleser:</strong></label>
                 <textarea id='message1' name='message1'></textarea>
                 <input hidden name='emneid' id='messageSubject' value=" . $_GET["subject"] . "><br>
@@ -71,15 +72,15 @@ $meldinger_conn = $conn->query($meldinger)
                 <label for=''>Pin Kode: </label>
                 <input type='text' name='PIN_text' id='PIN_text' placeholder='PIN'>
                 <input type='submit' value='submit' onclick='return IsEmpty()' name='submit'>
-            </form>
+            </form>"?>
 
             <p><strong>Alle meldinger: </strong></p>
-            "?>
+            
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
-            <p>Student: <?php echo $rad1["Meldingstekst"] ?></p></span>
-            <p>Foreleser: <?php echo $rad1["Svar"] ?></p></span>
-            <p>Gjest: <?php echo $rad1["Kommentar"] ?></p></span>
+            <p>Student: <?php echo htmlspecialchars($rad1["Meldingstekst"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>
+            <p>Foreleser: <?php echo htmlspecialchars($rad1["Svar"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>
+            <p>Gjest: <?php echo htmlspecialchars($rad1["Kommentar"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>
             <?php }} ?>
             
     
