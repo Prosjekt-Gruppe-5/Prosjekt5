@@ -1,5 +1,6 @@
 <?php
 session_start();
+//block all users execpt student
 if(!isset($_SESSION["loggedin_student"])){
     header("location: ../index.php");
     exit;
@@ -8,6 +9,7 @@ if(!isset($_SESSION["loggedin_student"])){
 
 include_once "includes/dbh.inc.php";
 
+//Inserts messages for text area to db
 if(isset($_POST["submit"])) 
             {
         $sql = sprintf("INSERT INTO meldinger (Meldingstekst, Emne_id) VALUES ('%s', '%d')",
@@ -19,13 +21,13 @@ if(isset($_POST["submit"]))
             header("Location: message_student.php");
             //var_dump($conn);
             }
-            
+//Gets foreleser info from foreleser view           
 $foreleser = "SELECT * FROM foreleser_view";
 $foreleser_conn = $conn->query($foreleser);
-
+//Gets emne info from emne view      
 $emner = "SELECT * FROM emner_view";
 $emner_conn = $conn->query($emner);
-
+//Gets melding info from melding view      
 $meldinger = "SELECT * FROM meldinger_view";
 $meldinger_conn = $conn->query($meldinger)
 
@@ -58,6 +60,7 @@ $meldinger_conn = $conn->query($meldinger)
     </form>
 
     <?php 
+        //Checks for subject then shows subject
         if(ISSET($_GET['subject']) && $_GET['subject'] != '0'){
            
             echo"
@@ -75,6 +78,7 @@ $meldinger_conn = $conn->query($meldinger)
 
             <p><strong>Alle meldinger: </strong></p>
             
+            <!-- show db info from meldinger_view with a filterion that makes script/html/css tags invalid -->
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
             <p>Student: <?php echo htmlspecialchars($rad1["Meldingstekst"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>

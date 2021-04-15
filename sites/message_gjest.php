@@ -56,6 +56,7 @@ $meldinger_1_conn = $conn->query($meldinger_1);
             </form>
             <?php if(isset($_GET['pin']) != NULL) {?>
            <p><strong>Alle meldinger fra studenter: </strong></p>
+           <!-- show db info from meldinger_view with a filterion that makes script/html/css tags invalid -->
             <?php while($rad1 = mysqli_fetch_array($meldinger_conn)) {?>
             <p>Melding ID: <?php echo $rad1["Melding_id"] ?></p></span>
             <p>Student: <?php echo htmlspecialchars($rad1["Meldingstekst"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?></p></span>
