@@ -18,7 +18,7 @@ session_start();
 
 <div id="nav">
     <a href="index.php">Hjem</a>
-    <a href="dokumentasjon.html">Dokumentasjon</a>   
+    <a href="doku/dokumentasjon.html">Dokumentasjon</a>   
     <?php
                   if (isset($_SESSION['loggedin'])) {
                       echo '<form action="sites/includes/logout.inc.php" method="POST">

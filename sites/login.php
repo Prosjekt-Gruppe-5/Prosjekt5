@@ -25,8 +25,9 @@
                 <label>Passord</label>
                 <input type="password" name="password" class="form-control">
             </div>
-            <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
+            <p>Pin koder finner du på: <a href="../doku/dokumentasjon.html">Dokumentasjon</a></p>
             <label for="">Pin Kode: </label>
+            <input type="number" name="pin" placeholder="PIN">
             <div class="form-group">
                 <input type="submit" onclick='return Pin()' class="btn btn-primary" value="Login">
             </div>

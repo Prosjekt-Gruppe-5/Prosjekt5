@@ -59,7 +59,7 @@ $meldinger_1_conn = $conn->query($meldinger_1);
                     <option value="<?php echo $rad["Melding_id"];?>"><?php echo $rad["Melding_id"];?></option>
                 ?><?php } ?>
                 </select>
-                <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
+                <p>Pin koder finner du på: <a href="../doku/dokumentasjon.html">Dokumentasjon</a></p>
                 <label for="">Pin Kode: </label>
                 <input type='text' name='PIN_text' id='PIN_text' placeholder="PIN">
                 <input type='submit' value='submit' onclick='return IsEmpty()' name='submit'>

@@ -49,7 +49,7 @@ $meldinger_1_conn = $conn->query($meldinger_1);
     <a href="../index.php">Hjem</a>
 </div>
     <div id="featured-content">
-            <p>Pin koder finner du på: <a href="../dokumentasjon.html">Dokumentasjon</a></p>
+            <p>Pin koder finner du på: <a href="../doku/dokumentasjon.html">Dokumentasjon</a></p>
             <form name="form2" action="" method="get">
             <input type="number" name="pin" placeholder="PIN">
             <input type="submit" value="sumbit" onclick='return Pin()' name="submit">

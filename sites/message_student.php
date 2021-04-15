@@ -70,7 +70,7 @@ $meldinger_conn = $conn->query($meldinger)
                 <label for='message'><strong>Melding til foreleser:</strong></label>
                 <textarea id='message1' name='message1'></textarea>
                 <input hidden name='emneid' id='messageSubject' value=" . $_GET["subject"] . "><br>
-                <p>Pin koder finner du på: <a href='../dokumentasjon.html'>Dokumentasjon</a></p>
+                <p>Pin koder finner du på: <a href='../doku/dokumentasjon.html'>Dokumentasjon</a></p>
                 <label for=''>Pin Kode: </label>
                 <input type='text' name='PIN_text' id='PIN_text' placeholder='PIN'>
                 <input type='submit' value='submit' onclick='return IsEmpty()' name='submit'>
