@@ -47,7 +47,6 @@ $meldinger_conn = $conn->query($meldinger)
     <a href="../index.php">Hjem</a>
 </div>
         <form action='message_student.php' method='get'>
-        <?php //if()  ?>
         <select name='subject' id='subject'>
                 <?php while($rad = mysqli_fetch_array($emner_conn)) { ?>
                     <option value="<?php echo $rad["Emne_id"];?>"><?php echo $rad["Emnenavn"];?></option>
@@ -61,7 +60,7 @@ $meldinger_conn = $conn->query($meldinger)
     <?php 
         if(ISSET($_GET['subject']) && $_GET['subject'] != '0'){
            
-             echo "
+            echo"
             <h2>Emner:". $emner = $rad['Emnenavn']." </h2>";
             echo"
             <form name='form1' onsubmit='return filter()' method='POST'>
