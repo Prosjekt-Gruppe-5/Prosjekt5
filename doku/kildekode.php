@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Dokumentasjon</title>
+    <title>Kildekode</title>
 </head>
 
 <body>
