@@ -50,6 +50,100 @@
                 <br>
                 <p>Vi har laget et basic api, og en veldig basic app(som ikke er fungerende enda). APIet vårt fungerer ved http requests (Get, post). http://158.39.188.205/steg1/api/api.php</p>
                 <br>
+                <h1>Rapport Steg 2</h1>
+                <img src="../pictures/doku/risk1.png" width="600px" alt="">
+                <p>
+                    Vi har valgt å dele inn abusecasen i tre risikogrupper(høyre side på bildet over), her har vi valgt brukersikkerhet, programsikkerhet, 
+                    og programfunksjonalitet. Dette er fordi vi føler dette er de tre overordnede områdene man må tenke 
+                    på når man lager et program. <br> De forskjellige metodene angriperen kan bruker er hentet fra rapportene vi har fått av andre grupper. 
+                </p>
+                <br>
+                <h2>Sende melding uten login:</h2>
+                <br>
+                <p>Dette er en feil i vårt program, som åpner 
+                    for at hvem som helst kan sende meldinger. Dette gjør at folk 
+                    kan gjøre phishing angrep på siden. Så dette går både på programsikkerhet og brukersikkerhet.
+                </p>
+                <br>
+                <h3>Løsning:</h3>
+                <br>
+                <p>Vil trenge en validering av bruker gjennom session id, før man får komme inn på nettsiden. Dette har vi fikset til steg 2.</p>
+                <br>
+
+                <h2>Finne filnavn:</h2>
+                <p>
+                    Siden hvem som helst kan finne mappestrukturen til nettsiden vår, vil det være lettere å gjøre fremtidige angrep mot siden vår. 
+                </p>
+                <br>
+                <h3>Løsning:</h3>
+                <br>
+                <p>Skjule mappestrukturen for brukere, og forandre filnavn bort fra 
+                    default values slik at de ikke lett kan “gjettes”. Dette har vi fikset til steg2.</p>
+                <br>
+                <h2>Kode injection(XSS):</h2>
+                <br>
+                <p>
+                    Dette er et problem for programmet vårt,
+                    da en enkelt kan “ødelegge” deler av programmet vårt med små tastetrykk,
+                    man kan også åpne ting som alerts som ødelegger for brukeropplevelsen.
+                </p>
+                <br>
+                <h3>Løsning:</h3>
+                <br>
+                <p>Løsning: Forandre charset for behandling av meldinger fra DB, type sånn som dette: 
+                    <code>“<?php echo htmlspecialchars($rad1["Meldingstekst"], ENT_HTML401 | ENT_COMPAT, 'UTF-8') ?>”</code>
+                    </p>
+                <br>
+
+                <h2>XSRF injection:</h2>
+                <br>
+                <p>
+                Det er mulighet for cross-site-forgery request på vår nettside, XSRF er en “site hijacking” og er relativt kritisk om det hadde skjedd
+                </p>
+                <br>
+                <h3>Løsning:</h3>
+                <br>
+                <p>Det er mye man kan gjøre for å stoppe disse angrepene, 
+                    noe vi har gjort er at vi har satt en “strict policy” på at cookie må være på samme side,
+                     det er også andre mulighet man kan gjøre som ASP.NET core som en anti forgery motor. 
+                    </p>
+                <br>
+                <h2>Dos angrep:</h2>
+                <p>
+                    Dos angrep skjer når en server får for mange request, og på vår nettsiden er det mulig.
+                </p>
+                <br>
+                <h3>Løsning:</h3>
+                <br>
+                <p>“time gate” på melding request, eller en reCaptcha for bot checking se dokumentasjons side på nettsiden for hvorfor dette er vanskelig.</p>
+                <h2>Code review:</h2>
+                <p>Etter steg 1 så gikk vi grundig gjennom eksisterende kode og fikset de problemene de andre gruppene gjorde oss oppmerksom på.
+                    Vi gikk manuelt gjennom flere revisjoner av koden sammen, hvor vi så etter feil eller bugs. 
+                    Vi så ingenting utenom det vi allerede visste om som kunne være til skade for nettsiden vår.
+                     Det kan hende det er noen smutthull som verken vi eller Skipfish klarte å identifisere.
+                    </p>
+                <h2>Skipfish analyse:</h2>
+                <img src="../pictures/doku/skip.PNG" width="600px" alt="">
+                <img src="../pictures/doku/risk.png" width="600px" alt="">
+                <h2>Risk-based security test:</h2>
+                    <p> Site hijacking: Vi har inkludert en header for å mindre sjansene for en XSRF angrep som er “Samesite = strict” på cookien vår. <br><br>
+
+                        XSS injection: Dette er noe som ble testet ganske mye mens, vi kodet. Vi har så gjort endringer som gjør det vanskeligere for en normal “cracker”
+                         til å gjøre XSS, se del om XSS på over. <br> <br>
+                        
+                        DDos attack: Får vi ikke testet, men er en mulighet siden det ikke er noe “time gate” eller reCaptcha på meldingssystemet <br><br>
+                         
+                        Brute force: Brute force er mulig siden vi ikke har noen “timeout” funksjoner/reCaptcha <br><br>
+                        
+                        Dos attack: Får vi ikke testet, men er en mulighet siden det ikke er noe “time gate” eller reCaptcha på meldingssystemet <br><br>
+                        </p>
+                <h2>Risikoanalyse av arkitekturen:</h2>
+                <p>Koden har ingen flere bugs som vi kunne finne med vårt code review, se code review delen over.
+                    Det er flere svakheter i sikkerheten i programmet som vi har funnet ut om fra rapportene fra de andre gruppene. 
+                    Ved å sette opp et risk management framework, og lage abuse cases og sikkerhetskrav har vi enten fikset opp i feilene,
+                    eller vet hvordan det skulle bli gjort hvis dette var et system som faktisk skulle brukes.
+                    Med tanke på testene og analysene som vi har gjort, mener vi at arkitekturen er over gjennomsnittet sikkert.
+                    </p>
                 <p> Medlemmer:</p>
                 <p>Sigurd Einar Aron Haugerud Rognan  - sigurd.e.rognan@hiof.no</p>
                 <br>

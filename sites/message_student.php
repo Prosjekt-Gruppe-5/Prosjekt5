@@ -15,7 +15,6 @@ if(isset($_POST["submit"]))
         $sql = sprintf("INSERT INTO meldinger (Meldingstekst, Emne_id) VALUES ('%s', '%d')",
                         $conn->real_escape_string($_POST["message1"]),
                         $conn->real_escape_string($_POST["emneid"])
-                        
                        );
             $conn->query($sql);
             header("Location: message_student.php");
